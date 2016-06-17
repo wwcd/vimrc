@@ -1,0 +1,55 @@
+" command moving
+cnoremap <C-A> <Home>
+cnoremap <C-F> <Right>
+cnoremap <C-B> <Left>
+cnoremap <Esc>b <S-Left>
+cnoremap <Esc>f <S-Right>
+
+vmap > >gv
+vmap < <gv
+
+autocmd BufRead *.txt set tw=500
+"autocmd BufWinLeave * if expand('%') != '' && &buftype == '' | mkview | endif
+"autocmd BufRead     * if expand('%') != '' && &buftype == '' | silent loadview | syntax on | endif
+
+if has("patch-7.4.1500")
+    set foldmethod=marker
+endif
+"set keywordprg=
+
+if has('nvim')
+	let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    let $TERM="xterm-256color"
+
+    tnoremap <Esc> <C-\><C-n>
+    tnoremap <A-h> <C-\><C-n><C-w>h
+    tnoremap <A-j> <C-\><C-n><C-w>j
+    tnoremap <A-k> <C-\><C-n><C-w>k
+    tnoremap <A-l> <C-\><C-n><C-w>l
+
+    map <leader>s :vs<cr>:term bash<cr>
+endif
+
+" json format and json lint
+if has('win32')
+    nmap <leader>jq :%!jq --indent 4 .<cr>:w<cr>
+    nmap <leader>jc :%!jq -c .<cr>:w<cr>
+    nmap <leader>jf :%!jq --indent 4 -S .<cr>:w<cr>
+    nmap <leader>jr :%!jq -c -S .<cr>:w<cr>
+    nmap <leader>jl :!jq -c . % 1>/dev/null<cr>
+    vmap <leader>jl :'<,'>!jq -c . % 1>/dev/null<cr>
+    vmap <leader>jq :'<,'>!jq --indent 4 .<cr>:w<cr>
+else
+    nmap <leader>jq :%!~/.vim/tools/jq --indent 4 .<cr>:w<cr>
+    nmap <leader>jc :%!~/.vim/tools/jq -c .<cr>:w<cr>
+    nmap <leader>jf :%!~/.vim/tools/jq --indent 4 -S .<cr>:w<cr>
+    nmap <leader>jr :%!~/.vim/tools/jq -c -S .<cr>:w<cr>
+    nmap <leader>jl :!~/.vim/tools/jq -c . % 1>/dev/null<cr>
+    vmap <leader>jl :'<,'>!~/.vim/tools/jq -c . % 1>/dev/null<cr>
+    vmap <leader>jq :'<,'>!~/.vim/tools/jq --indent 4 .<cr>:w<cr>
+endif
+
+ 
+
+
+

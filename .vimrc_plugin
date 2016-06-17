@@ -1,0 +1,178 @@
+" bufExplorer{{{
+let g:bufExplorerDefaultHelp=1
+let g:bufExplorerShowRelativePath=1
+let g:bufExplorerFindActive=1
+let g:bufExplorerSortBy='name'
+"}}}
+
+" NERD_tree {{{
+let NERDTreeDirArrows=0
+let NERDTreeHighlightCursorline=0
+" let NERDTreeQuitOnOpen=1
+let NERDTreeMapJumpNextSibling=""
+let NERDTreeMapJumpPrevSibling=""
+" }}}
+
+" CtrlP {{{
+let g:ctrlp_working_path_mode = 'a'
+let g:ctrlp_reuse_window = 'netrw\|help\|quickfix\|NERD\|BufExplorer'
+let g:ctrlp_custom_ignore = '^\.git\'
+let g:ctrlp_regexp = 1
+let g:ctrlp_max_height = 12
+" }}}
+
+" pclint&pyrun  {{{
+if has('win32')
+    autocmd Filetype c  :comp! flint
+endif
+autocmd Filetype python let &l:makeprg="python " .  fnameescape(expand("%"))
+autocmd Filetype go     let &l:makeprg="go run " .  fnameescape(expand("%"))
+nnoremap <F11> :make<CR>
+" }}}
+
+" Taglist/Tagbar {{{
+nnoremap <silent> <F8> :TlistToggle<CR>
+nnoremap <silent> <F7> :TlistUpdate<CR>
+let Tlist_Auto_Highlight_Tag = 1
+let Tlist_Show_One_File = 1
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_WinWidth = 40
+let Tlist_Auto_Update = 1
+" let Tlist_Enable_Fold_Column = 0
+if 0 == has('win32')
+    let Tlist_Ctags_Cmd = '~/.vim/tools/ctags'
+endif
+"if 0 == has('win32')
+"    let g:tagbar_ctags_bin='~/.vim/tools/ctags'
+"endif
+"nmap <silent> <F8> :TagbarToggle<CR>
+"let g:tagbar_sort = 0
+"let g:tagbar_left = 1
+"let g:tagbar_width=40
+" }}}
+
+" signature {{{
+let g:SignatureIncludeMarks='abcdefghijk'
+let g:SignatureMap = {
+            \ 'Leader'             :  "m",
+            \ 'PlaceNextMark'      :  "m,",
+            \ 'ToggleMarkAtLine'   :  "m.",
+            \ 'PurgeMarksAtLine'   :  "m-",
+            \ 'DeleteMark'         :  "dm",
+            \ 'PurgeMarks'         :  "m<Space>",
+            \ 'PurgeMarkers'       :  "m<BS>",
+            \ 'GotoNextLineAlpha'  :  "']",
+            \ 'GotoPrevLineAlpha'  :  "'[",
+            \ 'GotoNextSpotAlpha'  :  "`]",
+            \ 'GotoPrevSpotAlpha'  :  "`[",
+            \ 'GotoNextLineByPos'  :  "]'",
+            \ 'GotoPrevLineByPos'  :  "['",
+            \ 'GotoNextSpotByPos'  :  "]`",
+            \ 'GotoPrevSpotByPos'  :  "[`",
+            \ 'GotoNextMarker'     :  "[+",
+            \ 'GotoPrevMarker'     :  "[-",
+            \ 'GotoNextMarkerAny'  :  "]=",
+            \ 'GotoPrevMarkerAny'  :  "[=",
+            \ 'ListLocalMarks'     :  "mm",
+            \ 'ListLocalMarkers'   :  "m?"
+            \ }
+" }}}
+
+" plantUML {{{
+if has("win32")
+let g:plantuml_executable_script='java -jar "'.$VIM.'/vimfiles/bundle/vim-plantuml/plantuml.jar" -charset UTF-8 -graphvizdot d:/tools/plantUML/graphviz-2.38/release/bin/dot.exe"'
+else
+let g:plantuml_executable_script='java -jar ~/.vim/bundle/vim-plantuml/plantuml.jar'
+endif
+nnoremap <F5> :silent make<CR>
+" }}}
+
+"lightline {{{
+"let lightline = {
+"            \ 'colorscheme': 'wombat',
+"			\ 'active': {
+"			\   'left': [ [ 'mode', 'paste' ],
+"			\			  [ 'fugitive' ],
+"			\             [ 'readonly', 'filename' ] ],
+"			\  'right': [ [ 'lineinfo' ],
+"			\             [ 'percent' ],
+"            \             [ 'filetype', 'fileformat', 'fileencoding' ] ]
+"            \ },
+"            \ 'component': {
+"            \   'fugitive': '%{exists("*fugitive#head")?" ".fugitive#head():""}',
+"            \   'readonly': '%{&readonly?"RO":""}',
+"            \   'filename': '%f'.'%{tagbar#currenttag(" | %s","")}',
+"            \ },
+"            \ 'component_visible_condition': {
+"            \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+"            \ }
+"			\ }
+
+let g:lightline = {
+            \ 'mode_map': { 'c': 'NORMAL' },
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste' ],
+            \			  [ 'fugitive' ],
+            \             [ 'readonly', 'filename' ] ],
+            \  'right': [ [ 'lineinfo' ],
+            \             [ 'percent' ],
+            \             [ 'filetype', 'fileformat', 'fileencoding' ] ]
+            \ },
+            \ 'component': {
+            \   'filename': '%f'
+            \ },
+            \ 'component_function': {
+            \   'modified': 'LightLineModified',
+            \   'readonly': 'LightLineReadonly',
+            \   'fugitive': 'LightLineFugitive',
+            \   'fileformat': 'LightLineFileformat',
+            \   'filetype': 'LightLineFiletype',
+            \   'fileencoding': 'LightLineFileencoding',
+            \   'mode': 'LightLineMode',
+            \ }
+            \ }
+
+function! LightLineModified()
+    return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightLineReadonly()
+    return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'RO' : ''
+endfunction
+
+function! LightLineFugitive()
+    if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+        let branch = fugitive#head()
+        return branch !=# '' ? ' '.branch : ''
+    endif
+    return ''
+endfunction
+
+function! LightLineFileformat()
+    return winwidth(0) > 120 ? &fileformat : ''
+endfunction
+
+function! LightLineFiletype()
+    return winwidth(0) > 120 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightLineFileencoding()
+    return winwidth(0) > 120 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunction
+
+function! LightLineMode()
+    return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+"}}}
+
+"markdown {{{
+let g:vim_markdown_folding_disabled = 1
+"}}}
+
+"Ag{{{
+if 0 == has("win32")
+    let g:ag_prg="~/.vim/tools/ag --vimgrep"
+endif
+"}}}
+
