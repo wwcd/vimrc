@@ -7,6 +7,7 @@ cnoremap <Esc>f <S-Right>
 
 vmap > >gv
 vmap < <gv
+map Y y$
 
 autocmd BufRead *.txt set tw=500
 "autocmd BufWinLeave * if expand('%') != '' && &buftype == '' | mkview | endif

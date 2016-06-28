@@ -591,7 +591,7 @@ function! s:Tlist_Window_Display_Help()
     else
         " Add the extensive help
         call append(0, '" <enter> : Jump to tag definition')
-        call append(1, '" o : Jump to tag definition in new window')
+        call append(1, '" o : Jump to tag definition in previous window')
         call append(2, '" p : Preview the tag definition')
         call append(3, '" <space> : Display tag prototype')
         call append(4, '" u : Update tag list')
@@ -1627,7 +1627,7 @@ function! s:Tlist_Window_Init()
     nnoremap <buffer> <silent> <CR>
                 \ :call <SID>Tlist_Window_Jump_To_Tag('useopen')<CR>
     nnoremap <buffer> <silent> o
-                \ :call <SID>Tlist_Window_Jump_To_Tag('newwin')<CR>
+                \ :call <SID>Tlist_Window_Jump_To_Tag('prevwin')<CR>
     nnoremap <buffer> <silent> p
                 \ :call <SID>Tlist_Window_Jump_To_Tag('preview')<CR>
     nnoremap <buffer> <silent> P
@@ -1667,7 +1667,7 @@ function! s:Tlist_Window_Init()
     inoremap <buffer> <silent> <Return>
                 \ <C-o>:call <SID>Tlist_Window_Jump_To_Tag('useopen')<CR>
     inoremap <buffer> <silent> o
-                \ <C-o>:call <SID>Tlist_Window_Jump_To_Tag('newwin')<CR>
+                \ <C-o>:call <SID>Tlist_Window_Jump_To_Tag('prevwin')<CR>
     inoremap <buffer> <silent> p
                 \ <C-o>:call <SID>Tlist_Window_Jump_To_Tag('preview')<CR>
     inoremap <buffer> <silent> P

@@ -30,7 +30,7 @@ autocmd Filetype go     let &l:makeprg="go run " .  fnameescape(expand("%"))
 nnoremap <F11> :make<CR>
 " }}}
 
-" Taglist/Tagbar {{{
+" Taglist {{{
 nnoremap <silent> <F8> :TlistToggle<CR>
 nnoremap <silent> <F7> :TlistUpdate<CR>
 let Tlist_Auto_Highlight_Tag = 1
@@ -42,13 +42,6 @@ let Tlist_Auto_Update = 1
 if 0 == has('win32')
     let Tlist_Ctags_Cmd = '~/.vim/tools/ctags'
 endif
-"if 0 == has('win32')
-"    let g:tagbar_ctags_bin='~/.vim/tools/ctags'
-"endif
-"nmap <silent> <F8> :TagbarToggle<CR>
-"let g:tagbar_sort = 0
-"let g:tagbar_left = 1
-"let g:tagbar_width=40
 " }}}
 
 " signature {{{
@@ -106,7 +99,7 @@ nnoremap <F5> :silent make<CR>
 "            \ 'component_visible_condition': {
 "            \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
 "            \ }
-"			\ }
+"	\ }
 
 let g:lightline = {
             \ 'mode_map': { 'c': 'NORMAL' },
@@ -143,7 +136,11 @@ endfunction
 function! LightLineFugitive()
     if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
         let branch = fugitive#head()
-        return branch !=# '' ? ' '.branch : ''
+        if has('nvim')
+            return branch !=# '' ? ' '.branch : ''
+        else
+            return branch !=# '' ? branch : ''
+        endif
     endif
     return ''
 endfunction
