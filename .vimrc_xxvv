@@ -9,6 +9,8 @@ vmap > >gv
 vmap < <gv
 map Y y$
 
+set rnu
+
 autocmd BufRead *.txt set tw=500
 "autocmd BufWinLeave * if expand('%') != '' && &buftype == '' | mkview | endif
 "autocmd BufRead     * if expand('%') != '' && &buftype == '' | silent loadview | syntax on | endif
