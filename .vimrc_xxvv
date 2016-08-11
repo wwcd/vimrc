@@ -31,6 +31,9 @@ if has('nvim')
     tnoremap <A-l> <C-\><C-n><C-w>l
 
     map <leader>s :vs<cr>:term bash<cr>
+
+    let g:python_host_skip_check = 1
+    let g:python_host_prog = '/usr/bin/python'
 endif
 
 " json format and json lint
