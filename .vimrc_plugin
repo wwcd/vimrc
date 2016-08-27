@@ -186,8 +186,8 @@ let g:clang_user_options=''
 
 let g:clang_jumpto_declaration_key=''
 
-set conceallevel=2
-set concealcursor=vin
+" set conceallevel=2
+" set concealcursor=vin
 let g:clang_snippets=1
 let g:clang_conceal_snippets=1
 let g:clang_snippets_engine='clang_complete'
