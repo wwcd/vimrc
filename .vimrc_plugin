@@ -169,12 +169,12 @@ let g:vim_markdown_folding_disabled = 1
 
 "Ag{{{
 if 0 == has("win32")
-    let g:ag_prg="~/.vim/tools/ag --vimgrep"
+    let g:ag_prg="/root/.vim/tools/ag --vimgrep"
 endif
 "}}}
 
 "clang_complete{{{
-let g:clang_complete_auto=0
+let g:clang_complete_auto=1
 let g:clang_hl_errors=0
 let g:clang_complete_copen=0
 let g:clang_periodic_quickfix=1
@@ -204,3 +204,19 @@ set pumheight=20
 
 "}}}
 
+"fzf{{{
+let g:fzf_command_prefix = 'Fzf'
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColum', 'Normal'],
+  \ 'bg+':     ['bg', 'Title'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+"}}}

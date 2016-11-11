@@ -83,7 +83,7 @@ hi Question	ctermfg=green
 hi StatusLine	cterm=bold,reverse
 hi StatusLineNC cterm=reverse
 hi VertSplit	cterm=NONE ctermbg=236 ctermfg=Grey
-hi Title	ctermfg=5
+hi Title	ctermfg=5 ctermbg=0
 hi Visual	cterm=reverse
 hi VisualNOS	cterm=bold,underline
 hi WarningMsg	ctermfg=1
