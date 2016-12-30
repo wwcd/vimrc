@@ -55,3 +55,6 @@
 [submodule "bundle/fzf.vim"]
 	path = bundle/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
+[submodule "bundle/python-mode"]
+	path = bundle/python-mode
+	url = https://github.com/python-mode/python-mode
