@@ -36,7 +36,6 @@ if has('nvim')
     let g:python_host_prog = '/usr/bin/python'
 
     set icm=split
-
 endif
 
 " json format and json lint
@@ -62,6 +61,3 @@ if !has('win32')
     map <leader>o :FZF<CR>
 endif
  
-
-
-
