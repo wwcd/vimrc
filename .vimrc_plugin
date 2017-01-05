@@ -25,8 +25,6 @@ let g:ctrlp_max_height = 12
 if has('win32')
     autocmd Filetype c  :comp! flint
 endif
-autocmd Filetype python let &l:makeprg="python " .  fnameescape(expand("%"))
-autocmd Filetype go     let &l:makeprg="go run " .  fnameescape(expand("%"))
 nnoremap <F11> :make<CR>
 " }}}
 
@@ -173,36 +171,36 @@ if 0 == has("win32")
 endif
 "}}}
 
-"clang_complete{{{
-let g:clang_complete_auto=1
-let g:clang_hl_errors=0
-let g:clang_complete_copen=0
-let g:clang_periodic_quickfix=1
+""clang_complete{{{
+"let g:clang_complete_auto=1
+"let g:clang_hl_errors=0
+"let g:clang_complete_copen=0
+"let g:clang_periodic_quickfix=1
+""let g:clang_snippets=1
+""let g:clang_close_preview=1
+"let g:clang_use_library=1
+""let g:clang_conceal_snippets=1
+"let g:clang_user_options=''
+"
+"let g:clang_jumpto_declaration_key=''
+"
+"" set conceallevel=2
+"" set concealcursor=vin
 "let g:clang_snippets=1
-"let g:clang_close_preview=1
-let g:clang_use_library=1
 "let g:clang_conceal_snippets=1
-let g:clang_user_options=''
-
-let g:clang_jumpto_declaration_key=''
-
-" set conceallevel=2
-" set concealcursor=vin
-let g:clang_snippets=1
-let g:clang_conceal_snippets=1
-let g:clang_snippets_engine='clang_complete'
-
-" Complete options (disable preview scratch window, longest removed to aways
-" " show menu)
-set completeopt=menu,menuone
-
-" Limit popup menu height
-set pumheight=20
-
-" SuperTab completion fall-back 
-" let g:SuperTabDefaultCompletionType='<c-x><c-u><c-p>'
-
-"}}}
+"let g:clang_snippets_engine='clang_complete'
+"
+"" Complete options (disable preview scratch window, longest removed to aways
+"" " show menu)
+"set completeopt=menu,menuone
+"
+"" Limit popup menu height
+"set pumheight=20
+"
+"" SuperTab completion fall-back 
+"" let g:SuperTabDefaultCompletionType='<c-x><c-u><c-p>'
+"
+""}}}
 
 "fzf{{{
 let g:fzf_command_prefix = 'Fzf'
