@@ -222,4 +222,6 @@ let g:fzf_colors =
 "python-mode{{{
 let g:pymode_options_colorcolumn=0
 let g:pymode_folding = 1
+let g:pymode_rope_goto_definition_bind = "<C-]>"
+let g:pymode_rope_goto_definition_cmd = 'e'
 "}}}
