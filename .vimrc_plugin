@@ -11,6 +11,7 @@ let NERDTreeHighlightCursorline=0
 " let NERDTreeQuitOnOpen=1
 let NERDTreeMapJumpNextSibling=""
 let NERDTreeMapJumpPrevSibling=""
+let NERDTreeIgnore=['.o$[[file]]', '.pyc$[[file]]']
 " }}}
 
 " CtrlP {{{
@@ -167,7 +168,7 @@ let g:vim_markdown_folding_disabled = 1
 
 "Ag{{{
 if 0 == has("win32")
-    let g:ag_prg="/root/.vim/tools/ag --vimgrep"
+    " let g:ag_prg="/root/.vim/tools/ag --vimgrep"
 endif
 "}}}
 
@@ -224,4 +225,5 @@ let g:pymode_options_colorcolumn=0
 let g:pymode_folding = 1
 let g:pymode_rope_goto_definition_bind = "<C-]>"
 let g:pymode_rope_goto_definition_cmd = 'e'
+let g:pymode_rope_regenerate_on_write = 1
 "}}}
