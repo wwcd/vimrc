@@ -225,5 +225,5 @@ let g:pymode_options_colorcolumn=0
 let g:pymode_folding = 1
 let g:pymode_rope_goto_definition_bind = "<C-]>"
 let g:pymode_rope_goto_definition_cmd = 'e'
-let g:pymode_rope_regenerate_on_write = 1
+let g:pymode_rope_regenerate_on_write = 0
 "}}}
