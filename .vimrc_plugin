@@ -15,11 +15,11 @@ let NERDTreeIgnore=['.o$[[file]]', '.pyc$[[file]]']
 " }}}
 
 " CtrlP {{{
-let g:ctrlp_working_path_mode = 'a'
-let g:ctrlp_reuse_window = 'netrw\|help\|quickfix\|NERD\|BufExplorer'
-let g:ctrlp_custom_ignore = '^\.git\'
-let g:ctrlp_regexp = 1
-let g:ctrlp_max_height = 12
+" let g:ctrlp_working_path_mode = 'a'
+" let g:ctrlp_reuse_window = 'netrw\|help\|quickfix\|NERD\|BufExplorer'
+" let g:ctrlp_custom_ignore = '^\.git\'
+" let g:ctrlp_regexp = 1
+" let g:ctrlp_max_height = 12
 " }}}
 
 " pclint&pyrun  {{{
