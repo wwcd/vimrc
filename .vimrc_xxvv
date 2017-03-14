@@ -40,6 +40,8 @@ if has('nvim')
     let g:python_host_prog = '/usr/bin/python'
 
     set icm=split
+else
+    set t_Co=256
 endif
 
 " json format and json lint
@@ -61,7 +63,3 @@ else
     vmap <leader>jq :'<,'>!~/.vim/tools/jq --indent 4 .<cr>:w<cr>
 endif
 
-if !has('win32')
-    map <leader>o :FZF<CR>
-endif
- 

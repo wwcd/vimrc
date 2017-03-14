@@ -218,6 +218,13 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
+if !has('win32')
+    map <leader>o :FZF<CR>
+    map <leader>fb :FzfBuffers<CR>
+    map <leader>fl :FzfBLines<CR>
+endif
+ 
 "}}}
 
 "python-mode{{{
