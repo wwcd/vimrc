@@ -72,9 +72,9 @@ let g:SignatureMap = {
 
 " plantUML {{{
 if has("win32")
-let g:plantuml_executable_script='java -jar "'.$VIM.'/vimfiles/bundle/vim-plantuml/plantuml.jar" -charset UTF-8 -graphvizdot d:/tools/plantUML/graphviz-2.38/release/bin/dot.exe"'
+let g:plantuml_executable_script='java -jar "'.$VIM.'/vimfiles/tools/plantuml.jar" -charset UTF-8 -graphvizdot d:/tools/plantUML/graphviz-2.38/release/bin/dot.exe"'
 else
-let g:plantuml_executable_script='java -jar ~/.vim/bundle/vim-plantuml/plantuml.jar -charset UTF-8'
+let g:plantuml_executable_script='java -jar ~/.vim/tools/plantuml.jar -charset UTF-8'
 endif
 nnoremap <F5> :silent make<CR>
 " }}}
@@ -168,7 +168,7 @@ let g:vim_markdown_folding_disabled = 1
 
 "Ag{{{
 if 0 == has("win32")
-    " let g:ag_prg="/root/.vim/tools/ag --vimgrep"
+    let g:ag_prg=expand("~/.vim/tools/ag")." --vimgrep"
 endif
 "}}}
 
