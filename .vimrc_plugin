@@ -2,7 +2,7 @@
 let g:bufExplorerDefaultHelp=1
 let g:bufExplorerShowRelativePath=1
 let g:bufExplorerFindActive=1
-let g:bufExplorerSortBy='name'
+" let g:bufExplorerSortBy='name'
 "}}}
 
 " NERD_tree {{{
@@ -30,16 +30,25 @@ nnoremap <F11> :make<CR>
 " }}}
 
 " Taglist {{{
-nnoremap <silent> <F8> :TlistToggle<CR>
-nnoremap <silent> <F7> :TlistUpdate<CR>
-let Tlist_Auto_Highlight_Tag = 1
-let Tlist_Show_One_File = 1
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_WinWidth = 40
-let Tlist_Auto_Update = 1
-" let Tlist_Enable_Fold_Column = 0
+" nnoremap <silent> <F8> :TlistToggle<CR>
+" nnoremap <silent> <F7> :TlistUpdate<CR>
+" let Tlist_Auto_Highlight_Tag = 1
+" let Tlist_Show_One_File = 1
+" let Tlist_Exit_OnlyWindow = 1
+" let Tlist_WinWidth = 40
+" let Tlist_Auto_Update = 1
+" " let Tlist_Enable_Fold_Column = 0
+" if 0 == has('win32')
+"     let Tlist_Ctags_Cmd = '~/.vim/tools/ctags'
+" endif
+nmap <F8> :TagbarToggle<CR>
 if 0 == has('win32')
-    let Tlist_Ctags_Cmd = '~/.vim/tools/ctags'
+    let g:tagbar_ctags_bin = '~/.vim/tools/ctags'
+    let g:tagbar_left = 1
+    let g:tagbar_hide_nonpublic = 1
+    let g:tagbar_autoshowtag = 1
+    let g:tagbar_show_visibility = 0
+    let g:tagbar_iconchars = ['▶ ', '▼ ']
 endif
 " }}}
 
@@ -99,6 +108,13 @@ nnoremap <F5> :silent make<CR>
 "            \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
 "            \ }
 "	\ }
+"
+let g:tagbar_status_func = 'TagbarStatusFunc'
+
+function! TagbarStatusFunc(current, sort, fname, ...) abort
+    let g:lightline.fname = a:fname
+    return lightline#statusline(0)
+endfunction
 
 let g:lightline = {
             \ 'mode_map': { 'c': 'NORMAL' },
@@ -233,4 +249,5 @@ let g:pymode_folding = 1
 let g:pymode_rope_goto_definition_bind = "<C-]>"
 let g:pymode_rope_goto_definition_cmd = 'e'
 let g:pymode_rope_regenerate_on_write = 0
+let g:pymode_options_max_line_length = 120
 "}}}
