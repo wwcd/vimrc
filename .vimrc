@@ -1,20 +1,20 @@
-"auto load vimrc
-" if has('win32')
-"     au! BufWritePost $VIM/vimfiles/* so $VIM/vimfiles/vimrc
-" else
-"     au! BufWritePost ~/.vim/* so ~/.vimrc
-" endif
 
 execute pathogen#infect()
 execute pathogen#helptags()
 
 if has('win32')
-    source $VIM/vimfiles/.vimrc_amix
-    source $VIM/vimfiles/.vimrc_xxvv
-    source $VIM/vimfiles/.vimrc_plugin
+    if has('nvim')
+        let $VIMFILES=expand('$USERPROFILE/AppData/Local/nvim')
+    else
+        let $VIMFILES=expand('$VIM/vimfiles')
+    endif
 else
-    source ~/.vim/.vimrc_amix
-    source ~/.vim/.vimrc_xxvv
-    source ~/.vim/.vimrc_plugin
+    let $VIMFILES=expand('~/.vim')
 endif
+
+let $PATH=$PATH.";".$VIMFILES/tools
+
+source $VIMFILES/.vimrc_amix
+source $VIMFILES/.vimrc_xxvv
+source $VIMFILES/.vimrc_plugin
 

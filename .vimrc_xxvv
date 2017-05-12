@@ -26,7 +26,12 @@ endif
 
 if has('nvim')
 	let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-    let $TERM="xterm-256color"
+
+    if has('win32')
+        colorscheme molokai
+    else
+        let $TERM="xterm-256color"
+    endif
 
     tnoremap <Esc> <C-\><C-n>
     tnoremap <A-h> <C-\><C-n><C-w>h
@@ -36,8 +41,10 @@ if has('nvim')
 
     map <leader>s :vs<cr>:term bash<cr>
 
-    let g:python_host_skip_check = 1
-    let g:python_host_prog = '/usr/bin/python'
+    if has('unix')
+        let g:python_host_skip_check = 1
+        let g:python_host_prog = '/usr/bin/python'
+    end
 
     set icm=split
 else
@@ -45,21 +52,26 @@ else
 endif
 
 " json format and json lint
-if has('win32')
-    nmap <leader>jq :%!jq --indent 4 .<cr>:w<cr>
-    nmap <leader>jc :%!jq -c .<cr>:w<cr>
-    nmap <leader>jf :%!jq --indent 4 -S .<cr>:w<cr>
-    nmap <leader>jr :%!jq -c -S .<cr>:w<cr>
-    nmap <leader>jl :!jq -c . % 1>/dev/null<cr>
-    vmap <leader>jl :'<,'>!jq -c . % 1>/dev/null<cr>
-    vmap <leader>jq :'<,'>!jq --indent 4 .<cr>:w<cr>
-else
-    nmap <leader>jq :%!~/.vim/tools/jq --indent 4 .<cr>:w<cr>
-    nmap <leader>jc :%!~/.vim/tools/jq -c .<cr>:w<cr>
-    nmap <leader>jf :%!~/.vim/tools/jq --indent 4 -S .<cr>:w<cr>
-    nmap <leader>jr :%!~/.vim/tools/jq -c -S .<cr>:w<cr>
-    nmap <leader>jl :!~/.vim/tools/jq -c . % 1>/dev/null<cr>
-    vmap <leader>jl :'<,'>!~/.vim/tools/jq -c . % 1>/dev/null<cr>
-    vmap <leader>jq :'<,'>!~/.vim/tools/jq --indent 4 .<cr>:w<cr>
-endif
+nmap <leader>jq :%!$VIMFILES/tools/jq --indent 4 .<cr>:w<cr>
+nmap <leader>jc :%!$VIMFILES/tools/jq -c .<cr>:w<cr>
+nmap <leader>jf :%!$VIMFILES/tools/jq --indent 4 -S .<cr>:w<cr>
+nmap <leader>jr :%!$VIMFILES/tools/jq -c -S .<cr>:w<cr>
+nmap <leader>jl :!$VIMFILES/tools/jq -c . % 1>/dev/null<cr>
+vmap <leader>jl :'<,'>!$VIMFILES/tools/jq -c . % 1>/dev/null<cr>
+vmap <leader>jq :'<,'>!$VIMFILES/tools/jq --indent 4 .<cr>:w<cr>
 
+if v:version >= 704
+    function! Undo()
+        let l:tmpdir=expand('$VIMFILES/undo')
+
+        if !isdirectory(l:tmpdir)
+            call system('mkdir ' . l:tmpdir)
+        endif
+
+        let &undodir=l:tmpdir
+        set undofile
+        set undolevels=500 "maximum number of changes that can be undone
+    endfunction
+
+    call Undo()
+endif

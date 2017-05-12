@@ -207,25 +207,6 @@ endif
 set nobackup
 set nowb
 set noswapfile
-if v:version >= 704
-    function! Undo()
-        if has('win32')
-            let l:tmpdir=expand('$VIM/vimfiles/undo')
-        else
-            let l:tmpdir=expand('~/.vim/undo')
-        endif
-
-        if !isdirectory(l:tmpdir)
-            call system('mkdir ' . l:tmpdir)
-        endif
-
-        let &undodir=l:tmpdir
-        set undofile
-        set undolevels=500 "maximum number of changes that can be undone
-    endfunction
-
-    call Undo()
-endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
