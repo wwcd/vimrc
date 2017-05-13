@@ -12,7 +12,7 @@ else
     let $VIMFILES=expand('~/.vim')
 endif
 
-let $PATH=$PATH.";".$VIMFILES/tools
+let $PATH=$PATH.";".$VIMFILES.'/tools'
 
 source $VIMFILES/.vimrc_amix
 source $VIMFILES/.vimrc_xxvv
