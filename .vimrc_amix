@@ -177,13 +177,6 @@ if has("gui_running")
     set guioptions-=h
     set guioptions+=e
     set guitablabel=%M\ %t
-
-    " font
-    if has('win64') || has('win32')
-        "set guifontwide=Microsoft\ YaHei\ UI:h12:cGB2312
-        set guifontwide=Inziu\ Iosevka\ SC:h12
-        set guifont=Inziu\ Iosevka\ SC:h12
-    endif
 endif
 
 set mouse=
