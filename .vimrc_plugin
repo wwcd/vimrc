@@ -128,29 +128,27 @@ endfunction
 let g:vim_markdown_folding_disabled = 1
 "}}}
 
-"Ag{{{
-let g:ag_prg=$VIMFILES.'/tools/ag'.' --vimgrep'
-"}}}
-
 "fzf{{{
 let g:fzf_command_prefix = 'Fzf'
 
+if executable('ag')
+    let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore *.pyc --ignore .repoproject -g ""'
+endif
+
 if !has('win32')
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColum', 'Normal'],
-  \ 'bg+':     ['bg', 'Title'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-else
-let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore *.pyc --ignore .repoproject -g ""'
+    let g:fzf_colors =
+        \{'fg':      ['fg', 'Normal'],
+        \ 'bg':      ['bg', 'Normal'],
+        \ 'hl':      ['fg', 'Comment'],
+        \ 'fg+':     ['fg', 'CursorLine', 'CursorColum', 'Normal'],
+        \ 'bg+':     ['bg', 'Title'],
+        \ 'hl+':     ['fg', 'Statement'],
+        \ 'info':    ['fg', 'PreProc'],
+        \ 'prompt':  ['fg', 'Conditional'],
+        \ 'pointer': ['fg', 'Exception'],
+        \ 'marker':  ['fg', 'Keyword'],
+        \ 'spinner': ['fg', 'Label'],
+        \ 'header':  ['fg', 'Comment'] }
 endif
 
 map <silent><leader>o :FZF<CR>
