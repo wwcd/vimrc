@@ -1,12 +1,12 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer:
+" Maintainer: 
 "       Amir Salihefendic
 "       http://amix.dk - amix@amix.dk
 "
-" Version:
-"       5.0 - 29/05/12 15:43:36
+" Version: 
+"       6.0 - 01/04/17 14:24:34 
 "
-" Blog_post:
+" Blog_post: 
 "       http://amix.dk/blog/post/19691#The-ultimate-Vim-configuration-on-Github
 "
 " Awesome_version:
@@ -19,7 +19,7 @@
 " Syntax_highlighted:
 "       http://amix.dk/vim/vimrc.html
 "
-" Raw_version:
+" Raw_version: 
 "       http://amix.dk/vim/vimrc.txt
 "
 " Sections:
@@ -44,7 +44,7 @@
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
-set history=700
+set history=500
 
 " Enable filetype plugins
 filetype plugin on
@@ -61,22 +61,19 @@ let g:mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
 
-" :W sudo saves the file
+" :W sudo saves the file 
 " (useful for handling the permission-denied error)
-command! W w !sudo tee % > /dev/null
+command W w !sudo tee % > /dev/null
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn on line numbers
-set nu
-
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
 " Avoid garbled characters in Chinese language windows OS
-let $LANG='en'
+let $LANG='en' 
 set langmenu=en
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
@@ -108,23 +105,23 @@ set whichwrap+=<,>,h,l
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases
+" When searching try to be smart about cases 
 set smartcase
 
 " Highlight search results
 set hlsearch
 
 " Makes search act like search in modern browsers
-set incsearch
+set incsearch 
 
 " Don't redraw while executing macros (good performance config)
-set lazyredraw
+set lazyredraw 
 
 " For regular expressions turn magic on
 set magic
 
 " Show matching brackets when text indicator is over them
-set showmatch
+set showmatch 
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
@@ -148,7 +145,7 @@ set foldcolumn=0
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
-syntax enable
+syntax enable 
 
 " Enable 256 colors palette in Gnome Terminal
 if $COLORTERM == 'gnome-terminal'
@@ -159,8 +156,6 @@ try
     colorscheme desert
 catch
 endtry
-
-set nocursorline
 
 set background=dark
 
@@ -200,6 +195,7 @@ endif
 set nobackup
 set nowb
 set noswapfile
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -245,7 +241,6 @@ map k gk
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
-map <silent> <leader>l :noh<cr>:dif<cr>:syntax sync fromstart<cr><c-l>
 
 " Smart way to move between windows
 map <C-j> <C-W>j
@@ -266,8 +261,8 @@ map <leader>ba :bufdo bd<cr>
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-map <leader>t<leader> :tabnext
+map <leader>tm :tabmove 
+map <leader>t<leader> :tabnext 
 
 " Let 'tl' toggle between this and the last accessed tab
 " let g:lasttab = 1
@@ -291,8 +286,6 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-" Remember info about open buffers on close
-set viminfo^=%
 
 
 """"""""""""""""""""""""""""""
@@ -324,42 +317,44 @@ if has("mac") || has("macunix")
   vmap <D-k> <M-k>
 endif
 
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
-autocmd BufWrite *.py     : call DeleteTrailingWS()
-autocmd BufWrite *.coffee : call DeleteTrailingWS()
-autocmd BufWrite *.c      : call DeleteTrailingWS()
-autocmd BufWrite *.cc     : call DeleteTrailingWS()
-autocmd BufWrite *.cpp    : call DeleteTrailingWS()
-autocmd BufWrite *.h      : call DeleteTrailingWS()
-autocmd BufWrite *.lua    : call DeleteTrailingWS()
-autocmd BufWrite *.xml    : call DeleteTrailingWS()
-autocmd BufWrite *.json   : call DeleteTrailingWS()
-autocmd BufWrite *.md     : call DeleteTrailingWS()
+" Delete trailing white space on save, useful for some filetypes ;)
+fun! CleanExtraSpaces()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfun
 
-map <leader>e :edit %:p:h<cr>
+if has("autocmd")
+    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+endif
+
+
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Ag searching and cope displaying
-"    requires ag.vim - it's much better than vimgrep/grep
+" => Ack searching and cope displaying
+"    requires ack.vim - it's much better than vimgrep/grep
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" When you press gv you Ag after the selected text
+" Use the the_silver_searcher if possible (much faster than Ack)
+if executable('ag')
+    let g:ackprg = 'ag --vimgrep'
+endif
+
+" When you press gv you Ack after the selected text
 vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
 nnoremap <silent> <leader>gv viw:call VisualSelection('gv', '')<CR>
 
-" Open Ag and put the cursor in the right position
-map <leader>g :Ag 
+" Open Ack and put the cursor in the right position
+map <leader>g :Ack!
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
 
 " Do :help cope if you are unsure what cope is. It's super useful!
 "
-" When you search with Ag, display your results in cope by doing:
+" When you search with Ack, display your results in cope by doing:
 "   <leader>cc
 "
 " To go to the next search result do:
@@ -403,8 +398,6 @@ map <leader>x :e ~/buffer.md<cr>
 map <leader>pp :setlocal paste!<cr>
 
 
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -412,7 +405,7 @@ function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
     emenu Foo.Bar
     unmenu Foo
-endfunction
+endfunction 
 
 function! VisualSelection(direction, extra_filter) range
     let l:saved_reg = @"
@@ -422,9 +415,9 @@ function! VisualSelection(direction, extra_filter) range
     let l:pattern = substitute(l:pattern, "\n$", "", "")
 
     if a:direction == 'gv'
-        call CmdLine("Ag '" . l:pattern . "' " )
+        call CmdLine('Ack! "' . l:pattern . '" ' )
     elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
+        call CmdLine('%s' . '/'. l:pattern . '/')
     endif
 
     let @/ = l:pattern
