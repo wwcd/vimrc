@@ -63,19 +63,18 @@ function! TagbarStatusFunc(current, sort, fname, ...) abort
 endfunction
 
 let g:lightline = {
+            \ 'colorscheme': 'wombat',
             \ 'mode_map': { 'c': 'NORMAL' },
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
-            \			  [ 'fugitive' ],
-            \             [ 'readonly', 'filename' ] ],
+            \		  [ 'fugitive' ],
+            \             [ 'filename' ] ],
             \  'right': [ [ 'lineinfo' ],
             \             [ 'percent' ],
             \             [ 'filetype', 'fileformat', 'fileencoding' ] ]
             \ },
-            \ 'component': {
-            \   'filename': '%f'
-            \ },
             \ 'component_function': {
+            \   'filename': 'LightlineFilename',
             \   'modified': 'LightLineModified',
             \   'readonly': 'LightLineReadonly',
             \   'fugitive': 'LightLineFugitive',
@@ -87,11 +86,15 @@ let g:lightline = {
             \ }
 
 function! LightLineModified()
-    return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+    return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : ''
 endfunction
 
 function! LightLineReadonly()
-    return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'RO' : ''
+    if has('nvim')
+        return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '' : ''
+    else
+        return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'RO' : ''
+    endif
 endfunction
 
 function! LightLineFugitive()
@@ -120,6 +123,12 @@ endfunction
 
 function! LightLineMode()
     return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+function! LightlineFilename()
+    return ('' != expand('%') ? expand('%') : '[No Name]') .
+         \ ('' != LightLineReadonly() ? ' ' . LightLineReadonly() : '') .
+         \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
 
 "}}}
