@@ -56,13 +56,15 @@ else
 endif
 
 " json format and json lint
-nmap <silent><leader>jq :%!jq --indent 4 .<cr>:w<cr>
-nmap <silent><leader>jc :%!jq -c .<cr>:w<cr>
-nmap <silent><leader>jf :%!jq --indent 4 -S .<cr>:w<cr>
-nmap <silent><leader>jr :%!jq -c -S .<cr>:w<cr>
-nmap <silent><leader>jl :!jq -c . % 1>/dev/null<cr>
-vmap <silent><leader>jl :'<,'>!jq -c . % 1>/dev/null<cr>
-vmap <silent><leader>jq :'<,'>!jq --indent 4 .<cr>:w<cr>
+if executable('jq')
+    nmap <silent><leader>jq :%!jq --indent 4 .<cr>:w<cr>
+    nmap <silent><leader>jc :%!jq -c .<cr>:w<cr>
+    nmap <silent><leader>jf :%!jq --indent 4 -S .<cr>:w<cr>
+    nmap <silent><leader>jr :%!jq -c -S .<cr>:w<cr>
+    nmap <silent><leader>jl :!jq -c . % 1>/dev/null<cr>
+    vmap <silent><leader>jl :'<,'>!jq -c . % 1>/dev/null<cr>
+    vmap <silent><leader>jq :'<,'>!jq --indent 4 .<cr>:w<cr>
+endif
 
 if v:version >= 704
     function! Undo()

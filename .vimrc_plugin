@@ -13,7 +13,7 @@ let NERDTreeIgnore=['.o$[[file]]', '.pyc$[[file]]']
 " }}}
 
 " Tagbar {{{
-nmap <F8> :TagbarToggle<CR>
+nmap <silent><F8> :TagbarToggle<CR>
 let g:tagbar_ctags_bin = $VIMFILES.'/tools/ctags'
 let g:tagbar_left = 1
 let g:tagbar_hide_nonpublic = 0
@@ -154,6 +154,23 @@ endif
 map <silent><leader>o :FZF<CR>
 map <silent><leader>fb :FzfBuffers<CR>
 map <silent><leader>fl :FzfBLines<CR>
+"}}}
+
+"Ack{{{
+let g:ack_mappings = {
+      \ "t": "<C-W><CR><C-W>T",
+      \ "T": "<C-W><CR><C-W>TgT<C-W>j",
+      \ "o": "<CR>",
+      \ "O": "",
+      \ "go": "",
+      \ "h": "",
+      \ "H": "",
+      \ "v": "",
+      \ "gv": "",
+      \ "i": "<C-W><CR><C-W>K",
+      \ "gi": "<C-W><CR><C-W>K<C-W>b",
+      \ "s": "<C-W><CR><C-W>H<C-W>b<C-W>J<C-W>t",
+      \ "gs": "<C-W><CR><C-W>H<C-W>b<C-W>J" }
 "}}}
 
 "python-mode{{{
