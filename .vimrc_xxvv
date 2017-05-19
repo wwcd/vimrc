@@ -30,7 +30,7 @@ if has('nvim')
     tnoremap <A-k> <C-\><C-n><C-w>k
     tnoremap <A-l> <C-\><C-n><C-w>l
 
-    if exists('g:GuiLoaded')
+    if has('win32')
         map! <S-Insert> <C-R>+
         colorscheme molokai
 
