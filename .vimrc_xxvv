@@ -30,7 +30,7 @@ if has('nvim')
     tnoremap <A-k> <C-\><C-n><C-w>k
     tnoremap <A-l> <C-\><C-n><C-w>l
 
-    if has('win32')
+    if exists('g:GuiLoaded')
         map! <S-Insert> <C-R>+
         colorscheme molokai
 
@@ -43,7 +43,9 @@ if has('nvim')
         endfunction
         command! -nargs=0 ToggleFullScreen call ToggleGuiWindowFullScreen()
         nmap <F11> :ToggleFullScreen<CR>
-    else
+    end
+
+    if has('unix')
         let $TERM="screen-256color"
 
         map <leader>s :vs<cr>:term bash<cr>
