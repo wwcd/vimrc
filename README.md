@@ -42,6 +42,7 @@ git clone --recursive https://github.com/xxvv/vimrc nvim
 - [plantuml-syntax](https://github.com/aklt/plantuml-syntax.git)
 - [python-mode](https://github.com/python-mode/python-mode)
 - [tagbar](https://github.com/majutsushi/tagbar.git)
+- [typescript-vim](https://github.com/leafgarland/typescript-vim.git)
 - [vim-commentary](https://github.com/tpope/vim-commentary.git)
 - [vim-fugitive](https://github.com/tpope/vim-fugitive.git)
 - [vim-javascript](https://github.com/pangloss/vim-javascript.git)
@@ -62,4 +63,3 @@ The leader is `,`.
 - `<leader>be` :Open Bufexplorer
 - `<F8>` :Open Tagbar
 - `<leader>g` :Ack Search
-
