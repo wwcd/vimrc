@@ -82,7 +82,7 @@ let g:lightline = {
             \   'filetype': 'LightLineFiletype',
             \   'fileencoding': 'LightLineFileencoding',
             \   'mode': 'LightLineMode',
-            \ }
+            \ },
             \ }
 
 function! LightLineModified()
