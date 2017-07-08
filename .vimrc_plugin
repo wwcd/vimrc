@@ -63,7 +63,7 @@ function! TagbarStatusFunc(current, sort, fname, ...) abort
 endfunction
 
 let g:lightline = {
-            \ 'colorscheme': 'wombat',
+            \ 'colorscheme': 'landscape',
             \ 'mode_map': { 'c': 'NORMAL' },
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
@@ -188,5 +188,20 @@ let g:pymode_folding = 1
 let g:pymode_rope_goto_definition_bind = "<C-]>"
 let g:pymode_rope_goto_definition_cmd = 'e'
 let g:pymode_rope_regenerate_on_write = 0
-let g:pymode_options_max_line_length = 120
+let g:pymode_options_max_line_length = 80
+let g:pymode_lint = 1
+let g:pymode_lint_on_write = 1
+let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
+let g:pymode_lint_options_mccabe = {'complexity': 8}
+"}}}
+
+"syntastic{{{
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_typescript_checkers = ['tslint']
+" let g:syntastic_debug = 33
+" let g:syntastic_debug_file = "~/syntastic.log"
+" let g:neomake_logfile = "/root/neomake.log"
 "}}}
