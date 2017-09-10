@@ -5,21 +5,21 @@
 
 ```bash
 cd ~ && rm -rf .vim
-git clone --recursive https://github.com/xxvv/vimrc .vim
+git clone --recursive https://github.com/shoulinwong/vimrc .vim
 ln -s ~/.vim/init.vim .vimrc
 ```
 
 ## gvim
 
 ```batch
-git clone --recursive https://github.com/xxvv/vimrc vimfiles
+git clone --recursive https://github.com/shoulinwong/vimrc vimfiles
 ```
 
 ## neovim in linux
 
 ```bash
 cd ~ && rm -rf .vim
-git clone --recursive https://github.com/xxvv/vimrc .vim
+git clone --recursive https://github.com/shoulinwong/vimrc .vim
 ln -s ~/.vim ~/.config/nvim
 ```
 
@@ -27,7 +27,7 @@ ln -s ~/.vim ~/.config/nvim
 
 ```batch
 cd %USERPROFILE%\AppData\Local
-git clone --recursive https://github.com/xxvv/vimrc nvim
+git clone --recursive https://github.com/shoulinwong/vimrc nvim
 ```
 
 # Plugins
