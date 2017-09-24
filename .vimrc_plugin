@@ -9,7 +9,7 @@ let NERDTreeDirArrows=0
 let NERDTreeHighlightCursorline=0
 let NERDTreeMapJumpNextSibling=""
 let NERDTreeMapJumpPrevSibling=""
-let NERDTreeIgnore=['.o$[[file]]', '.pyc$[[file]]']
+let NERDTreeIgnore=['\.o$[[file]]', '\.pyc$[[file]]']
 " }}}
 
 " Tagbar {{{
