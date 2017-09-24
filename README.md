@@ -45,6 +45,7 @@ git clone --recursive https://github.com/shoulinwong/vimrc nvim
 - [typescript-vim](https://github.com/leafgarland/typescript-vim.git)
 - [vim-commentary](https://github.com/tpope/vim-commentary.git)
 - [vim-fugitive](https://github.com/tpope/vim-fugitive.git)
+- [vim-go](https://github.com/fatih/vim-go.git)
 - [vim-javascript](https://github.com/pangloss/vim-javascript.git)
 - [vim-jdaddy](https://github.com/tpope/vim-jdaddy.git)
 - [vim-markdown](https://github.com/plasticboy/vim-markdown.git)
