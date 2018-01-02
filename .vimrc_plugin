@@ -209,7 +209,8 @@ let g:pymode_lint = 1
 let g:pymode_lint_on_write = 1
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pylint']
 let g:pymode_lint_options_mccabe = {'complexity': 8}
-let g:pymode_lint_ignore = "C1001,C0111,C0103,E1101,W0110,W0212,W0232,W0622,R" 
+" Using local .pylintrc
+let g:pymode_lint_options_pylint = {'rcfile': ''}
 "}}}
 
 "syntastic{{{
