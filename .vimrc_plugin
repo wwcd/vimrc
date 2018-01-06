@@ -223,3 +223,19 @@ let g:pymode_lint_options_pylint = {'rcfile': ''}
 " let g:syntastic_debug_file = "~/syntastic.log"
 " let g:neomake_logfile = "/root/neomake.log"
 "}}}
+
+"vim-go{{{
+autocmd FileType go nmap <leader>b <Plug>(go-build)
+autocmd FileType go nmap <leader>r <Plug>(go-run)
+autocmd FileType go nmap <leader>t <Plug>(go-test)
+autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+autocmd FileType go nmap <Leader>i <Plug>(go-info)
+
+let g:go_fmt_command = "goimports"
+
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_metalinter_excludes = ['should\ have\ comment', 'error\ return\ value']
+
+"}}}
