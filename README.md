@@ -41,8 +41,10 @@ git clone --recursive https://github.com/shoulinwong/vimrc nvim
 - [nerdtree](https://github.com/scrooloose/nerdtree.git)
 - [plantuml-syntax](https://github.com/aklt/plantuml-syntax.git)
 - [python-mode](https://github.com/python-mode/python-mode)
+- [splitjon.vim](https://github.com/AndrewRadev/splitjoin.vim.git)
 - [tagbar](https://github.com/majutsushi/tagbar.git)
 - [typescript-vim](https://github.com/leafgarland/typescript-vim.git)
+- [ultisnips](https://github.com/SirVer/ultisnips.git)
 - [vim-commentary](https://github.com/tpope/vim-commentary.git)
 - [vim-fugitive](https://github.com/tpope/vim-fugitive.git)
 - [vim-go](https://github.com/fatih/vim-go.git)
@@ -51,7 +53,9 @@ git clone --recursive https://github.com/shoulinwong/vimrc nvim
 - [vim-markdown](https://github.com/plasticboy/vim-markdown.git)
 - [vim-repeat](https://github.com/tpope/vim-repeat.git)
 - [vim-signature](https://github.com/kshenoy/vim-signature.git)
+- [vim-snippets](https://github.com/honza/vim-snippets.git)
 - [vim-surround](https://github.com/tpope/vim-surround.git)
+- [vim-toml](https://github.com/cespare/vim-toml.git)
 
 # Key Mappings
 

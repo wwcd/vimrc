@@ -225,17 +225,34 @@ let g:pymode_lint_options_pylint = {'rcfile': ''}
 "}}}
 
 "vim-go{{{
-autocmd FileType go nmap <leader>b <Plug>(go-build)
-autocmd FileType go nmap <leader>r <Plug>(go-run)
-autocmd FileType go nmap <leader>t <Plug>(go-test)
-autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
-autocmd FileType go nmap <Leader>i <Plug>(go-info)
-
 let g:go_fmt_command = "goimports"
+let g:go_autodetect_gopath = 1
+let g:go_list_type = "quickfix"
 
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 let g:go_metalinter_autosave = 1
 let g:go_metalinter_autosave_enabled = ['vet', 'golint']
 let g:go_metalinter_excludes = ['should\ have\ comment', 'error\ return\ value']
+let g:go_metalinter_deadline = "5s"
+
+nmap <C-g> :GoDeclsDir<cr>
+imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
+
+augroup go
+	autocmd!
+
+	autocmd FileType go nmap <leader>b <Plug>(go-build)
+	autocmd FileType go nmap <leader>r <Plug>(go-run)
+	autocmd FileType go nmap <leader>t <Plug>(go-test)
+	autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+	autocmd FileType go nmap <Leader>i <Plug>(go-info)
+	autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
+
+	" :GoAlternate  commands :A, :AV, :AS and :AT
+	autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+	autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+	autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+	autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+augroup END
 
 "}}}

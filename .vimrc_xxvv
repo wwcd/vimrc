@@ -90,8 +90,3 @@ if v:version >= 704
 endif
 
 au BufRead *.txt set tw=500
-au BufNewFile *.py :call append(0, ["#!/usr/bin/env python", "# -*- coding: utf-8 -*-", ""])
-au FileType python map <leader>pyh :call append(0, ["#!/usr/bin/env python", "# -*- coding: utf-8 -*-", ""])<cr>
-au BufNewFile *.sh :call append(0, ["#!/bin/bash", ""])
-au FileType sh map <leader>shh :call append(0, ["#!/bin/bash", ""])<cr>
-
