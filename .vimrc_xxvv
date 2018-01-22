@@ -13,6 +13,8 @@ set nu
 set rnu
 set nocursorline
 
+set cot=menu
+
 " Remember info about open buffers on close
 set viminfo^=%
 
@@ -88,5 +90,3 @@ if v:version >= 704
 
     call Undo()
 endif
-
-au BufRead *.txt set tw=500
