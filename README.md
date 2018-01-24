@@ -33,7 +33,6 @@ git clone --recursive https://github.com/shoulinwong/vimrc nvim
 # Plugins
 
 - [ack.vim](https://github.com/mileszs/ack.vim.git)
-- [bufexplorer](https://github.com/jlanzarotta/bufexplorer.git)
 - [fzf.vim](https://github.com/junegunn/fzf.vim.git)
 - [fzf](https://github.com/junegunn/fzf.git)
 - [lightline](https://github.com/itchyny/lightline.vim)
@@ -52,7 +51,6 @@ git clone --recursive https://github.com/shoulinwong/vimrc nvim
 - [vim-jdaddy](https://github.com/tpope/vim-jdaddy.git)
 - [vim-markdown](https://github.com/plasticboy/vim-markdown.git)
 - [vim-repeat](https://github.com/tpope/vim-repeat.git)
-- [vim-signature](https://github.com/kshenoy/vim-signature.git)
 - [vim-snippets](https://github.com/honza/vim-snippets.git)
 - [vim-surround](https://github.com/tpope/vim-surround.git)
 - [vim-toml](https://github.com/cespare/vim-toml.git)
@@ -65,6 +63,6 @@ The leader is `,`.
 
 - `<leader>e` :Open Nerdtree
 - `<leader>o` :Open FZF
-- `<leader>be` :Open Bufexplorer
+- `<leader>b` :Open Bufexplorer
 - `<F8>` :Open Tagbar
-- `<leader>g` :Ack Search
+- `<leader>g` :Ack Search using ag

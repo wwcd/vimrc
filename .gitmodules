@@ -1,15 +1,9 @@
-[submodule "bundle/vim-bufexplorer"]
-	path = bundle/vim-bufexplorer
-	url = https://github.com/jlanzarotta/bufexplorer.git
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
 [submodule "bundle/vim-nerdtree"]
 	path = bundle/vim-nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
-[submodule "bundle/vim-signature"]
-	path = bundle/vim-signature
-	url = https://github.com/kshenoy/vim-signature.git
 [submodule "bundle/vim-molokai"]
 	path = bundle/vim-molokai
 	url = https://github.com/tomasr/molokai.git
@@ -27,9 +21,6 @@
 [submodule "bundle/vim-markdown"]
 	path = bundle/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
-[submodule "bundle/vim-jdaddy"]
-	path = bundle/vim-jdaddy
-	url = https://github.com/tpope/vim-jdaddy.git
 [submodule "bundle/fzf"]
 	path = bundle/fzf
 	url = https://github.com/junegunn/fzf.git

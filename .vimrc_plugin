@@ -1,9 +1,3 @@
-" bufExplorer{{{
-let g:bufExplorerDefaultHelp=1
-let g:bufExplorerShowRelativePath=1
-let g:bufExplorerFindActive=1
-"}}}
-
 " NERD_tree {{{
 let NERDTreeDirArrows=0
 let NERDTreeHighlightCursorline=0
@@ -36,33 +30,6 @@ let g:tagbar_type_typescript = {
     \ 'e:enums',
   \ ]
 \ }
-" }}}
-
-" Signature {{{
-let g:SignatureIncludeMarks='abcdefghijk'
-let g:SignatureMap = {
-            \ 'Leader'             :  "m",
-            \ 'PlaceNextMark'      :  "m,",
-            \ 'ToggleMarkAtLine'   :  "m.",
-            \ 'PurgeMarksAtLine'   :  "m-",
-            \ 'DeleteMark'         :  "dm",
-            \ 'PurgeMarks'         :  "m<Space>",
-            \ 'PurgeMarkers'       :  "m<BS>",
-            \ 'GotoNextLineAlpha'  :  "']",
-            \ 'GotoPrevLineAlpha'  :  "'[",
-            \ 'GotoNextSpotAlpha'  :  "`]",
-            \ 'GotoPrevSpotAlpha'  :  "`[",
-            \ 'GotoNextLineByPos'  :  "]'",
-            \ 'GotoPrevLineByPos'  :  "['",
-            \ 'GotoNextSpotByPos'  :  "]`",
-            \ 'GotoPrevSpotByPos'  :  "[`",
-            \ 'GotoNextMarker'     :  "[+",
-            \ 'GotoPrevMarker'     :  "[-",
-            \ 'GotoNextMarkerAny'  :  "]=",
-            \ 'GotoPrevMarkerAny'  :  "[=",
-            \ 'ListLocalMarks'     :  "mm",
-            \ 'ListLocalMarkers'   :  "m?"
-            \ }
 " }}}
 
 " plantUML {{{
@@ -176,8 +143,7 @@ if !has('win32')
 endif
 
 map <silent><leader>o :FZF<CR>
-map <silent><leader>fb :FzfBuffers<CR>
-map <silent><leader>fl :FzfBLines<CR>
+map <silent><leader>b :FzfBuffers<CR>
 "}}}
 
 "Ack{{{
@@ -212,18 +178,7 @@ let g:pymode_lint_options_mccabe = {'complexity': 8}
 " Using local .pylintrc
 let g:pymode_lint_options_pylint = {'rcfile': ''}
 "}}}
-
-"syntastic{{{
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_typescript_checkers = ['tslint']
-" let g:syntastic_debug = 33
-" let g:syntastic_debug_file = "~/syntastic.log"
-" let g:neomake_logfile = "/root/neomake.log"
-"}}}
-
+"
 "vim-go{{{
 let g:go_fmt_command = "goimports"
 let g:go_autodetect_gopath = 1
