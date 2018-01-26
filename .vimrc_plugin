@@ -1,13 +1,17 @@
 " NERD_tree {{{
+let NERDTreeWinSize=40
 let NERDTreeDirArrows=0
 let NERDTreeHighlightCursorline=0
 let NERDTreeMapJumpNextSibling=""
 let NERDTreeMapJumpPrevSibling=""
 let NERDTreeIgnore=['\.o$[[file]]', '\.pyc$[[file]]']
+nmap <silent><F7> :NERDTreeToggle<CR>
+map <silent><C-n> :NERDTreeToggle<CR>
 " }}}
 
 " Tagbar {{{
 nmap <silent><F8> :TagbarToggle<CR>
+map <silent><C-s> :TagbarToggle<CR>
 let g:tagbar_ctags_bin = $VIMFILES.'/tools/ctags'
 let g:tagbar_left = 1
 let g:tagbar_hide_nonpublic = 0
@@ -122,7 +126,9 @@ let g:vim_markdown_folding_disabled = 1
 "fzf{{{
 let g:fzf_command_prefix = 'Fzf'
 
-if executable('ag')
+if executable('rg')
+    let $FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,.repoproject,node_modules,vendor}/*" -g "!{*.pyc,*.o}"'
+elseif executable('ag')
     let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore *.pyc --ignore .repoproject -g ""'
 endif
 
@@ -142,8 +148,19 @@ if !has('win32')
         \ 'header':  ['fg', 'Comment'] }
 endif
 
-map <silent><leader>o :FZF<CR>
-map <silent><leader>b :FzfBuffers<CR>
+map <silent><c-p> :FzfFiles<CR>
+map <silent><c-b> :FzfBuffers<CR>
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 "}}}
 
 "Ack{{{
@@ -178,17 +195,18 @@ let g:pymode_lint_options_mccabe = {'complexity': 8}
 " Using local .pylintrc
 let g:pymode_lint_options_pylint = {'rcfile': ''}
 "}}}
-"
+
 "vim-go{{{
 let g:go_fmt_command = "goimports"
 let g:go_autodetect_gopath = 1
 let g:go_list_type = "quickfix"
 
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
-let g:go_metalinter_autosave = 1
-let g:go_metalinter_autosave_enabled = ['vet', 'golint']
-let g:go_metalinter_excludes = ['should\ have\ comment', 'error\ return\ value']
-let g:go_metalinter_deadline = "5s"
+" let g:go_metalinter_autosave = 1
+" let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+" let g:go_metalinter_disabled = []
+let g:go_metalinter_command = '--enable vet --enable golint --enable errcheck --exclude comment --exclude check'
+let g:go_metalinter_deadline = '5s'
 
 nmap <C-g> :GoDeclsDir<cr>
 imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
@@ -207,7 +225,6 @@ augroup go
 	autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 	autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
 	autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-	autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 augroup END
 
 "}}}

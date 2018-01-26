@@ -48,7 +48,6 @@ git clone --recursive https://github.com/shoulinwong/vimrc nvim
 - [vim-fugitive](https://github.com/tpope/vim-fugitive.git)
 - [vim-go](https://github.com/fatih/vim-go.git)
 - [vim-javascript](https://github.com/pangloss/vim-javascript.git)
-- [vim-jdaddy](https://github.com/tpope/vim-jdaddy.git)
 - [vim-markdown](https://github.com/plasticboy/vim-markdown.git)
 - [vim-repeat](https://github.com/tpope/vim-repeat.git)
 - [vim-snippets](https://github.com/honza/vim-snippets.git)
@@ -61,8 +60,8 @@ The leader is `,`.
 
 ## Plugin related mapping
 
-- `<leader>e` :Open Nerdtree
-- `<leader>o` :Open FZF
-- `<leader>b` :Open Bufexplorer
-- `<F8>` :Open Tagbar
-- `<leader>g` :Ack Search using ag
+- `<c-n>` :Open Nerdtree
+- `<c-s>` :Open Tagbar
+- `<c-b>` :Open FZF buffers
+- `<c-p>` :Open FZF files
+- `<leader>g` :Ack Search using ripgrep
