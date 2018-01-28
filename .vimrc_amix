@@ -337,13 +337,6 @@ endif
 " => Ack searching and cope displaying
 "    requires ack.vim - it's much better than vimgrep/grep
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use the the_silver_searcher if possible (much faster than Ack)
-if executable('rg')
-    let g:ackprg = 'rg --vimgrep --no-heading -g "!{.git,.repoproject,node_modules,vendor}/*" -g "!{*.pyc,*.o}"'
-elseif executable('ag')
-    let g:ackprg = 'ag --vimgrep'
-endif
-
 " When you press gv you Ack after the selected text
 vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
 nnoremap <silent> <leader>gv viw:call VisualSelection('gv', '')<CR>
@@ -366,7 +359,7 @@ vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
 "   <leader>p
 "
 map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
+map <leader>co :cclose<cr>
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 

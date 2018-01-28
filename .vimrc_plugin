@@ -127,9 +127,9 @@ let g:vim_markdown_folding_disabled = 1
 let g:fzf_command_prefix = 'Fzf'
 
 if executable('rg')
-    let $FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,.repoproject,node_modules,vendor}/*" -g "!{*.pyc,*.o}"'
+    let $FZF_DEFAULT_COMMAND='rg --files --hidden --follow --ignore-file ' . $VIMFILES . '/tools/.ignore'
 elseif executable('ag')
-    let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore *.pyc --ignore .repoproject -g ""'
+    let $FZF_DEFAULT_COMMAND='ag --hidden  --path-to-ignore ' . $VIMFILES . '/tools/.ignore' . ' -g ""'
 endif
 
 if !has('win32')
@@ -178,6 +178,12 @@ let g:ack_mappings = {
       \ "gi": "<C-W><CR><C-W>K<C-W>b",
       \ "s": "<C-W><CR><C-W>H<C-W>b<C-W>J<C-W>t",
       \ "gs": "<C-W><CR><C-W>H<C-W>b<C-W>J" }
+
+if executable('rg')
+    let g:ackprg = 'rg --vimgrep --no-heading --ignore-file ' . $VIMFILES . '/tools/.ignore'
+elseif executable('ag')
+    let g:ackprg = 'ag --vimgrep --path-to-ignore ' . $VIMFILES . '/tools/.ignore'
+endif
 "}}}
 
 "python-mode{{{
