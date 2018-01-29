@@ -1,9 +1,6 @@
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule "bundle/vim-nerdtree"]
-	path = bundle/vim-nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
 [submodule "bundle/vim-fugitive"]
 	path = bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
@@ -57,3 +54,6 @@
 [submodule "bundle/molokai"]
 	path = bundle/molokai
 	url = https://github.com/fatih/molokai
+[submodule "bundle/nerdtree"]
+	path = bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
