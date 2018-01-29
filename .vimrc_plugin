@@ -37,7 +37,7 @@ let g:tagbar_type_typescript = {
 " }}}
 
 " plantUML {{{
-let g:plantuml_executable_script='java -jar '.$VIMFILES.'/tools/plantuml.jar -charset UTF-8'
+let g:plantuml_executable_script='java -jar ' . expand('$VIMFILES/tools/plantuml.jar') . ' -charset UTF-8'
 " }}}
 
 "lightline {{{
