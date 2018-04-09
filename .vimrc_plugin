@@ -3,8 +3,8 @@ let NERDTreeWinSize=40
 let NERDTreeDirArrows=0
 let NERDTreeHighlightCursorline=0
 if has('unix')
-    let NERDTreeDirArrowExpandable='▶'
-    let NERDTreeDirArrowCollapsible='▼'
+  let NERDTreeDirArrowExpandable='▶'
+  let NERDTreeDirArrowCollapsible='▼'
 endif
 let NERDTreeMapJumpNextSibling=""
 let NERDTreeMapJumpPrevSibling=""
@@ -26,95 +26,95 @@ let g:tagbar_compact = 1
 let g:tagbar_sort = 0
 
 let g:tagbar_type_typescript = {
-  \ 'ctagstype': 'typescript',
-  \ 'kinds': [
-    \ 'c:classes',
-    \ 'n:modules',
-    \ 'f:functions',
-    \ 'v:variables',
-    \ 'v:varlambdas',
-    \ 'm:members',
-    \ 'i:interfaces',
-    \ 'e:enums',
-  \ ]
-\ }
+      \ 'ctagstype': 'typescript',
+      \ 'kinds': [
+      \ 'c:classes',
+      \ 'n:modules',
+      \ 'f:functions',
+      \ 'v:variables',
+      \ 'v:varlambdas',
+      \ 'm:members',
+      \ 'i:interfaces',
+      \ 'e:enums',
+      \ ]
+      \ }
 " }}}
 
 "lightline {{{
 let g:tagbar_status_func = 'TagbarStatusFunc'
 
 function! TagbarStatusFunc(current, sort, fname, ...) abort
-    let g:lightline.fname = a:fname
-    return lightline#statusline(0)
+  let g:lightline.fname = a:fname
+  return lightline#statusline(0)
 endfunction
 
 let g:lightline = {
-            \ 'colorscheme': 'landscape',
-            \ 'mode_map': { 'c': 'NORMAL' },
-            \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ],
-            \             [ 'fugitive' ],
-            \             [ 'filename' ] ],
-            \  'right': [ [ 'lineinfo' ],
-            \             [ 'percent' ],
-            \             [ 'filetype', 'fileformat', 'fileencoding' ] ]
-            \ },
-            \ 'component_function': {
-            \   'filename': 'LightlineFilename',
-            \   'modified': 'LightLineModified',
-            \   'readonly': 'LightLineReadonly',
-            \   'fugitive': 'LightLineFugitive',
-            \   'fileformat': 'LightLineFileformat',
-            \   'filetype': 'LightLineFiletype',
-            \   'fileencoding': 'LightLineFileencoding',
-            \   'mode': 'LightLineMode',
-            \ },
-            \ }
+      \ 'colorscheme': 'landscape',
+      \ 'mode_map': { 'c': 'NORMAL' },
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive' ],
+      \             [ 'filename' ] ],
+      \  'right': [ [ 'lineinfo' ],
+      \             [ 'percent' ],
+      \             [ 'filetype', 'fileformat', 'fileencoding' ] ]
+      \ },
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \   'modified': 'LightLineModified',
+      \   'readonly': 'LightLineReadonly',
+      \   'fugitive': 'LightLineFugitive',
+      \   'fileformat': 'LightLineFileformat',
+      \   'filetype': 'LightLineFiletype',
+      \   'fileencoding': 'LightLineFileencoding',
+      \   'mode': 'LightLineMode',
+      \ },
+      \ }
 
 function! LightLineModified()
-    return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : ''
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : ''
 endfunction
 
 function! LightLineReadonly()
-    if has('nvim')
-        return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '' : ''
-    else
-        return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'RO' : ''
-    endif
+  if has('nvim')
+    return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '' : ''
+  else
+    return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'RO' : ''
+  endif
 endfunction
 
 function! LightLineFugitive()
-    if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
-        let branch = fugitive#head()
-        if has('nvim')
-            return branch !=# '' ? ' '.branch : ''
-        else
-            return branch !=# '' ? branch : ''
-        endif
+  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+    let branch = fugitive#head()
+    if has('nvim')
+      return branch !=# '' ? ' '.branch : ''
+    else
+      return branch !=# '' ? branch : ''
     endif
-    return ''
+  endif
+  return ''
 endfunction
 
 function! LightLineFileformat()
-    return winwidth(0) > 120 ? &fileformat : ''
+  return winwidth(0) > 120 ? &fileformat : ''
 endfunction
 
 function! LightLineFiletype()
-    return winwidth(0) > 120 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+  return winwidth(0) > 120 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
 endfunction
 
 function! LightLineFileencoding()
-    return winwidth(0) > 120 ? (&fenc !=# '' ? &fenc : &enc) : ''
+  return winwidth(0) > 120 ? (&fenc !=# '' ? &fenc : &enc) : ''
 endfunction
 
 function! LightLineMode()
-    return winwidth(0) > 60 ? lightline#mode() : ''
+  return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
 function! LightlineFilename()
-    return ('' != expand('%') ? expand('%') : '[No Name]') .
-         \ ('' != LightLineReadonly() ? ' ' . LightLineReadonly() : '') .
-         \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+  return ('' != expand('%') ? expand('%') : '[No Name]') .
+        \ ('' != LightLineReadonly() ? ' ' . LightLineReadonly() : '') .
+        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
 
 "}}}
@@ -127,13 +127,13 @@ let g:vim_markdown_folding_disabled = 1
 let g:fzf_command_prefix = 'Fzf'
 
 if executable('rg')
-    let $FZF_DEFAULT_COMMAND='rg --files --hidden --follow --ignore-file ' . expand('$VIMFILES/tools/.ignore')
+  let $FZF_DEFAULT_COMMAND='rg --files --hidden --follow --ignore-file ' . expand('$VIMFILES/tools/.ignore')
 elseif executable('ag')
-    let $FZF_DEFAULT_COMMAND='ag --hidden  --path-to-ignore ' . expand('$VIMFILES/tools/.ignore') . ' -g ""'
+  let $FZF_DEFAULT_COMMAND='ag --hidden  --path-to-ignore ' . expand('$VIMFILES/tools/.ignore') . ' -g ""'
 endif
 
 if !has('win32')
-    let g:fzf_colors =
+  let g:fzf_colors =
         \{'fg':      ['fg', 'Normal'],
         \ 'bg':      ['bg', 'Normal'],
         \ 'hl':      ['fg', 'Comment'],
@@ -180,9 +180,9 @@ let g:ack_mappings = {
       \ "gs": "<C-W><CR><C-W>H<C-W>b<C-W>J" }
 
 if executable('rg')
-    let g:ackprg = 'rg --vimgrep --no-heading --ignore-file ' . expand('$VIMFILES/tools/.ignore')
+  let g:ackprg = 'rg --vimgrep --no-heading --ignore-file ' . expand('$VIMFILES/tools/.ignore')
 elseif executable('ag')
-    let g:ackprg = 'ag --vimgrep --path-to-ignore ' . expand('$VIMFILES/tools/.ignore')
+  let g:ackprg = 'ag --vimgrep --path-to-ignore ' . expand('$VIMFILES/tools/.ignore')
 endif
 "}}}
 
@@ -215,21 +215,23 @@ let g:go_metalinter_command = '--enable vet --enable golint --enable errcheck --
 let g:go_metalinter_deadline = '5s'
 
 augroup go
-    autocmd!
+  autocmd!
 
-    autocmd FileType go nmap <C-g> :GoDeclsDir<cr>
+  autocmd FileType go nmap <C-g> :GoDeclsDir<cr>
 
-    autocmd FileType go nmap <leader>b <Plug>(go-build)
-    autocmd FileType go nmap <leader>r <Plug>(go-run)
-    autocmd FileType go nmap <leader>t <Plug>(go-test)
-    autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
-    autocmd FileType go nmap <Leader>i <Plug>(go-info)
-    autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
+  autocmd FileType go nmap <leader>b <Plug>(go-build)
+  autocmd FileType go nmap <leader>r <Plug>(go-run)
+  autocmd FileType go nmap <leader>t <Plug>(go-test)
+  autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+  autocmd FileType go nmap <Leader>i <Plug>(go-info)
+  autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
 
-    " :GoAlternate  commands :A, :AV, :AS and :AT
-    autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-    autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-    autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+  " :GoAlternate  commands :A, :AV, :AS and :AT
+  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 augroup end
 
 "}}}
+
+" vim: ts=2 sw=2 et
