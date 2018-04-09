@@ -48,7 +48,9 @@ if has('nvim')
     end
 
     if has('unix')
-        let $TERM="screen-256color"
+        if $TMUX != "" 
+            let $TERM="screen-256color"
+        endif
 
         map <leader>s :vs<cr>:term bash<cr>
         let g:python_host_prog='/usr/bin/python2'
