@@ -15,6 +15,7 @@ map <silent><C-n> :NERDTreeToggle<CR>
 
 " Tagbar {{{
 nmap <silent><F8> :TagbarToggle<CR>
+" set 'stty -ixon' in ~/.bash_profile to disable XON/XOFF
 map <silent><C-s> :TagbarToggle<CR>
 let g:tagbar_ctags_bin = $VIMFILES.'/tools/ctags'
 let g:tagbar_left = 1
