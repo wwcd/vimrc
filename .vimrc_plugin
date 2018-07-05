@@ -1,3 +1,7 @@
+"-------------------------------------------------------------------------------
+" Base plugins
+"-------------------------------------------------------------------------------
+
 " NERD_tree {{{
 let NERDTreeWinSize=40
 let NERDTreeDirArrows=0
@@ -120,10 +124,6 @@ endfunction
 
 "}}}
 
-"markdown {{{
-let g:vim_markdown_folding_disabled = 1
-"}}}
-
 "fzf{{{
 let g:fzf_command_prefix = 'Fzf'
 
@@ -187,6 +187,18 @@ elseif executable('ag')
 endif
 "}}}
 
+"vim-commentary{{{
+autocmd FileType cmake setlocal commentstring=#\ %s
+"}}}
+
+"-------------------------------------------------------------------------------
+" Coding plugins
+"-------------------------------------------------------------------------------
+
+"markdown {{{
+let g:vim_markdown_folding_disabled = 1
+"}}}
+
 "python-mode{{{
 let g:pymode_options_colorcolumn=0
 let g:pymode_folding = 1
@@ -233,10 +245,6 @@ augroup go
   autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 augroup end
 
-"}}}
-
-"vim-commentary{{{
-autocmd FileType cmake setlocal commentstring=#\ %s
 "}}}
 
 " vim: ts=2 sw=2 et
