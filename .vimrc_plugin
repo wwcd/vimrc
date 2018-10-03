@@ -208,7 +208,7 @@ let g:pymode_rope_goto_definition_cmd = 'e'
 let g:pymode_rope_regenerate_on_write = 0
 let g:pymode_options_max_line_length = 100
 let g:pymode_lint = 1
-let g:pymode_lint_on_write = 1
+let g:pymode_lint_on_write = 0
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pylint']
 let g:pymode_lint_options_mccabe = {'complexity': 8}
 " Using local .pylintrc
