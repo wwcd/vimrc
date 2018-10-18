@@ -31,21 +31,22 @@ let g:tagbar_compact = 1
 let g:tagbar_sort = 0
 
 let g:tagbar_type_typescript = {
-      \ 'ctagstype': 'typescript',
-      \ 'kinds': [
-      \ 'c:classes',
-      \ 'n:modules',
-      \ 'f:functions',
-      \ 'v:variables',
-      \ 'v:varlambdas',
-      \ 'm:members',
-      \ 'i:interfaces',
-      \ 'e:enums',
-      \ ]
-      \ }
+  \ 'ctagstype': 'typescript',
+  \ 'kinds': [
+  \ 'c:classes',
+  \ 'n:modules',
+  \ 'f:functions',
+  \ 'v:variables',
+  \ 'v:varlambdas',
+  \ 'm:members',
+  \ 'i:interfaces',
+  \ 'e:enums',
+  \ ]
+  \ }
 " }}}
 
 "lightline {{{
+set noshowmode
 let g:tagbar_status_func = 'TagbarStatusFunc'
 
 function! TagbarStatusFunc(current, sort, fname, ...) abort
@@ -54,27 +55,27 @@ function! TagbarStatusFunc(current, sort, fname, ...) abort
 endfunction
 
 let g:lightline = {
-      \ 'colorscheme': 'landscape',
-      \ 'mode_map': { 'c': 'NORMAL' },
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive' ],
-      \             [ 'filename' ] ],
-      \  'right': [ [ 'lineinfo' ],
-      \             [ 'percent' ],
-      \             [ 'filetype', 'fileformat', 'fileencoding' ] ]
-      \ },
-      \ 'component_function': {
-      \   'filename': 'LightlineFilename',
-      \   'modified': 'LightLineModified',
-      \   'readonly': 'LightLineReadonly',
-      \   'fugitive': 'LightLineFugitive',
-      \   'fileformat': 'LightLineFileformat',
-      \   'filetype': 'LightLineFiletype',
-      \   'fileencoding': 'LightLineFileencoding',
-      \   'mode': 'LightLineMode',
-      \ },
-      \ }
+  \ 'colorscheme': 'landscape',
+  \ 'mode_map': { 'c': 'NORMAL' },
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ],
+  \             [ 'fugitive' ],
+  \             [ 'filename' ] ],
+  \  'right': [ [ 'lineinfo' ],
+  \             [ 'percent' ],
+  \             [ 'filetype', 'fileformat', 'fileencoding' ] ]
+  \ },
+  \ 'component_function': {
+  \   'filename': 'LightlineFilename',
+  \   'modified': 'LightLineModified',
+  \   'readonly': 'LightLineReadonly',
+  \   'fugitive': 'LightLineFugitive',
+  \   'fileformat': 'LightLineFileformat',
+  \   'filetype': 'LightLineFiletype',
+  \   'fileencoding': 'LightLineFileencoding',
+  \   'mode': 'LightLineMode',
+  \ },
+  \ }
 
 function! LightLineModified()
   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : ''
@@ -129,24 +130,10 @@ let g:fzf_command_prefix = 'Fzf'
 
 if executable('rg')
   let $FZF_DEFAULT_COMMAND='rg --files --hidden --follow --ignore-file ' . expand('$VIMFILES/tools/.ignore')
+  let $FZF_DEFAULT_OPTS='--color 16'
 elseif executable('ag')
   let $FZF_DEFAULT_COMMAND='ag --hidden  --path-to-ignore ' . expand('$VIMFILES/tools/.ignore') . ' -g ""'
-endif
-
-if !has('win32')
-  let g:fzf_colors =
-        \{'fg':      ['fg', 'Normal'],
-        \ 'bg':      ['bg', 'Normal'],
-        \ 'hl':      ['fg', 'Comment'],
-        \ 'fg+':     ['fg', 'CursorLine', 'CursorColum', 'Normal'],
-        \ 'bg+':     ['bg', 'Title'],
-        \ 'hl+':     ['fg', 'Statement'],
-        \ 'info':    ['fg', 'PreProc'],
-        \ 'prompt':  ['fg', 'Conditional'],
-        \ 'pointer': ['fg', 'Exception'],
-        \ 'marker':  ['fg', 'Keyword'],
-        \ 'spinner': ['fg', 'Label'],
-        \ 'header':  ['fg', 'Comment'] }
+  let $FZF_DEFAULT_OPTS='--color 16'
 endif
 
 map <silent><c-p> :FzfFiles<CR>
@@ -166,19 +153,19 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 
 "Ack{{{
 let g:ack_mappings = {
-      \ "t": "<C-W><CR><C-W>T",
-      \ "T": "<C-W><CR><C-W>TgT<C-W>j",
-      \ "o": "<CR>",
-      \ "O": "",
-      \ "go": "",
-      \ "h": "",
-      \ "H": "",
-      \ "v": "",
-      \ "gv": "",
-      \ "i": "<C-W><CR><C-W>K",
-      \ "gi": "<C-W><CR><C-W>K<C-W>b",
-      \ "s": "<C-W><CR><C-W>H<C-W>b<C-W>J<C-W>t",
-      \ "gs": "<C-W><CR><C-W>H<C-W>b<C-W>J" }
+  \ "t": "<C-W><CR><C-W>T",
+  \ "T": "<C-W><CR><C-W>TgT<C-W>j",
+  \ "o": "<CR>",
+  \ "O": "",
+  \ "go": "",
+  \ "h": "",
+  \ "H": "",
+  \ "v": "",
+  \ "gv": "",
+  \ "i": "<C-W><CR><C-W>K",
+  \ "gi": "<C-W><CR><C-W>K<C-W>b",
+  \ "s": "<C-W><CR><C-W>H<C-W>b<C-W>J<C-W>t",
+  \ "gs": "<C-W><CR><C-W>H<C-W>b<C-W>J" }
 
 if executable('rg')
   let g:ackprg = 'rg --vimgrep --no-heading --ignore-file ' . expand('$VIMFILES/tools/.ignore')
@@ -208,7 +195,7 @@ let g:pymode_rope_goto_definition_cmd = 'e'
 let g:pymode_rope_regenerate_on_write = 0
 let g:pymode_options_max_line_length = 100
 let g:pymode_lint = 1
-let g:pymode_lint_on_write = 0
+let g:pymode_lint_on_write = 1
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pylint']
 let g:pymode_lint_options_mccabe = {'complexity': 8}
 " Using local .pylintrc
