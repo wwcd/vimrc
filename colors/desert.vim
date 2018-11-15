@@ -90,7 +90,7 @@ hi WarningMsg	ctermfg=1
 hi WildMenu	ctermfg=0 ctermbg=3
 hi Folded	ctermfg=Grey ctermbg=NONE
 hi FoldColumn	ctermfg=Grey ctermbg=NONE
-hi DiffAdd	ctermbg=4
+hi DiffAdd  ctermbg=4
 hi DiffChange	ctermbg=5
 hi DiffDelete	cterm=bold ctermfg=4 ctermbg=6
 hi DiffText	cterm=bold ctermbg=1
