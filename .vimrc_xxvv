@@ -14,6 +14,7 @@ set rnu
 set nocursorline
 
 set cot=menu
+set listchars=tab:»\ ,eol:$,trail:~,extends:>,precedes:<,space:·
 
 " Remember info about open buffers on close
 set viminfo^=%
