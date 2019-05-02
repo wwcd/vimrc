@@ -14,7 +14,6 @@ set rnu
 set nocursorline
 
 set cot=menu
-set listchars=tab:»\ ,eol:$,trail:~,extends:>,precedes:<,space:·
 
 " Remember info about open buffers on close
 set viminfo^=%
@@ -60,6 +59,7 @@ if has('nvim')
     let g:python3_host_prog='/usr/bin/python3'
   endif
 
+  set listchars=tab:»\ ,eol:$,trail:~,extends:>,precedes:<,space:·
   set icm=split
 else
   set t_Co=256

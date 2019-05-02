@@ -1,7 +1,6 @@
 .git/
 .repoproject/
 node_modules/
-vendor/
 
 *.pyc
 *.o
