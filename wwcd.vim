@@ -13,7 +13,7 @@ set nu
 set rnu
 set nocursorline
 
-set cot=menu
+set completeopt=longest,menuone
 
 " Remember info about open buffers on close
 set viminfo^=%
@@ -34,7 +34,6 @@ if has('nvim')
 
   if has('win32')
     map! <S-Insert> <C-R>+
-    colorscheme molokai
 
     function! ToggleGuiWindowFullScreen()
       if g:GuiWindowFullScreen == 0
@@ -65,12 +64,6 @@ else
   set t_Co=256
 endif
 
-" json format and json lint
-if executable('jq')
-  nmap <silent><leader>jq :%!jq --indent 2 .<cr>:w<cr>
-  vmap <silent><leader>jq :'<,'>!jq --indent 2 .<cr>:w<cr>
-endif
-
 if v:version >= 704
   function! Undo()
     if has('win32')
@@ -89,34 +82,6 @@ if v:version >= 704
   endfunction
 
   call Undo()
-endif
-
-if has("cscope")
-  " set csprg=/usr/local/bin/cscope
-  set csto=0
-  set cst
-  set nocsverb
-  " add any database in current directory
-  if filereadable("cscope.out")
-    cs add cscope.out
-    " else add database pointed to by environment
-  elseif $CSCOPE_DB != ""
-    cs add $CSCOPE_DB
-  endif
-  set csverb
-
-  map g<C-]> :cs find 1 <C-R>=expand("<cword>")<CR><CR>
-  map g<C-\> :cs find 3 <C-R>=expand("<cword>")<CR><CR>
-
-  nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-  nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-  nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-  nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-  nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-  nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-  nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-  nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-  nmap <C-_>a :cs find a <C-R>=expand("<cword>")<CR><CR>
 endif
 
 " vim: ts=2 sw=2 et

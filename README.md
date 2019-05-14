@@ -39,6 +39,7 @@ git clone --recursive https://github.com/shoulinwong/vimrc nvim
 - [fzf](https://github.com/junegunn/fzf.git)
 - [lightline](https://github.com/itchyny/lightline.vim)
 - [molokai](https://github.com/fatih/molokai)
+- [desert](https://github.com/wwcd/desert)
 - [nerdtree](https://github.com/scrooloose/nerdtree.git)
 - [tagbar](https://github.com/majutsushi/tagbar.git)
 - [targets.vim](https://github.com/wellle/targets.vim)

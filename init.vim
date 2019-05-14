@@ -1,7 +1,4 @@
 
-execute pathogen#infect()
-execute pathogen#helptags()
-
 if has('win32')
   if has('nvim')
     let $VIMFILES=expand('$USERPROFILE/AppData/Local/nvim')
@@ -18,8 +15,8 @@ else
   let $PATH=$PATH.":".expand('$VIMFILES/tools')
 endif
 
-source $VIMFILES/.vimrc_amix
-source $VIMFILES/.vimrc_xxvv
-source $VIMFILES/.vimrc_plugin
+source $VIMFILES/plugged.vim
+source $VIMFILES/amix.vim
+source $VIMFILES/wwcd.vim
 
 " vim: ts=2 sw=2 et

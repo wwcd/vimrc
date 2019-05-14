@@ -1,8 +1,42 @@
+
+call plug#begin('~/.vim/plugged')
+
+" colorscheme
+Plug 'fatih/molokai'
+Plug 'wwcd/desert'
+
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf', { 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'majutsushi/tagbar'
+Plug 'mileszs/ack.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'wellle/targets.vim'
+
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'python-mode/python-mode', { 'branch': 'master' }
+Plug 'plasticboy/vim-markdown'
+Plug 'leafgarland/typescript-vim'
+Plug 'cespare/vim-toml'
+
+call plug#end()
+
+
 "-------------------------------------------------------------------------------
 " Base plugins
 "-------------------------------------------------------------------------------
 
 " NERD_tree {{{
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+
 let NERDTreeWinSize=40
 let NERDTreeDirArrows=0
 let NERDTreeHighlightCursorline=0
@@ -130,10 +164,10 @@ let g:fzf_command_prefix = 'Fzf'
 
 if executable('rg')
   let $FZF_DEFAULT_COMMAND='rg --files --hidden --follow --ignore-file ' . expand('$VIMFILES/tools/.ignore')
-  let $FZF_DEFAULT_OPTS='--color 16'
+  let $FZF_DEFAULT_OPTS='--color bg:-1,bg+:-1'
 elseif executable('ag')
   let $FZF_DEFAULT_COMMAND='ag --hidden  --path-to-ignore ' . expand('$VIMFILES/tools/.ignore') . ' -g ""'
-  let $FZF_DEFAULT_OPTS='--color 16'
+  let $FZF_DEFAULT_OPTS='--color bg:-1,bg+:-1'
 endif
 
 map <silent><c-p> :FzfFiles<CR>
@@ -239,6 +273,36 @@ augroup go
   autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 augroup end
 
+"}}}
+
+"cscope{{{
+if has("cscope")
+  set csprg=$VIMFILES.'/tools/cscope'
+  set csto=0
+  set cst
+  set nocsverb
+  " add any database in current directory
+  if filereadable("cscope.out")
+    cs add cscope.out
+    " else add database pointed to by environment
+  elseif $CSCOPE_DB != ""
+    cs add $CSCOPE_DB
+  endif
+  set csverb
+
+  map g<C-]> :cs find 1 <C-R>=expand("<cword>")<CR><CR>
+  map g<C-\> :cs find 3 <C-R>=expand("<cword>")<CR><CR>
+
+  nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+  nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+  nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-_>a :cs find a <C-R>=expand("<cword>")<CR><CR>
+endif
 "}}}
 
 " vim: ts=2 sw=2 et
