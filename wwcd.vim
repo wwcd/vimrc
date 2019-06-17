@@ -26,10 +26,6 @@ endif
 "set keywordprg=
 "
 
-if !has('gui_running')
-  set t_Co=256
-endif
-
 if has('nvim')
   tnoremap <Esc> <C-\><C-n>
   tnoremap <A-h> <C-\><C-n><C-w>h
@@ -39,6 +35,7 @@ if has('nvim')
 
   if has('win32')
     map! <S-Insert> <C-R>+
+    colorscheme molokai
 
     function! ToggleGuiWindowFullScreen()
       if g:GuiWindowFullScreen == 0
@@ -65,6 +62,8 @@ if has('nvim')
 
   set listchars=tab:»\ ,eol:$,trail:~,extends:>,precedes:<,space:·
   set icm=split
+else
+  set t_Co=256
 endif
 
 if v:version >= 704

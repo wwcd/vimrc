@@ -1,1 +1,1 @@
-Guifont! Inziu Iosevka SC:h11
+Guifont! 等距更纱黑体 SC:h11
