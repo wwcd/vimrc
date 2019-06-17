@@ -1,5 +1,5 @@
 
-call plug#begin('~/.vim/plugged')
+call plug#begin($VIMFILES.'/plugged')
 
 " colorscheme
 Plug 'fatih/molokai'

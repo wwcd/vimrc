@@ -38,8 +38,6 @@ git clone --recursive https://github.com/shoulinwong/vimrc nvim
 - [fzf.vim](https://github.com/junegunn/fzf.vim.git)
 - [fzf](https://github.com/junegunn/fzf.git)
 - [lightline](https://github.com/itchyny/lightline.vim)
-- [molokai](https://github.com/fatih/molokai)
-- [desert](https://github.com/wwcd/desert)
 - [nerdtree](https://github.com/scrooloose/nerdtree.git)
 - [tagbar](https://github.com/majutsushi/tagbar.git)
 - [targets.vim](https://github.com/wellle/targets.vim)
@@ -47,6 +45,11 @@ git clone --recursive https://github.com/shoulinwong/vimrc nvim
 - [vim-fugitive](https://github.com/tpope/vim-fugitive.git)
 - [vim-repeat](https://github.com/tpope/vim-repeat.git)
 - [vim-surround](https://github.com/tpope/vim-surround.git)
+
+## Color
+
+- [molokai](https://github.com/fatih/molokai)
+- [desert](https://github.com/wwcd/desert)
 
 ## Snips
 

@@ -24,6 +24,11 @@ if has("patch-7.4.1500")
   set foldmethod=marker
 endif
 "set keywordprg=
+"
+
+if !has('gui_running')
+  set t_Co=256
+endif
 
 if has('nvim')
   tnoremap <Esc> <C-\><C-n>
@@ -60,8 +65,6 @@ if has('nvim')
 
   set listchars=tab:»\ ,eol:$,trail:~,extends:>,precedes:<,space:·
   set icm=split
-else
-  set t_Co=256
 endif
 
 if v:version >= 704
