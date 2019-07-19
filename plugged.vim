@@ -41,8 +41,8 @@ let NERDTreeWinSize=40
 let NERDTreeDirArrows=0
 let NERDTreeHighlightCursorline=0
 if has('unix')
-  let NERDTreeDirArrowExpandable='▶'
-  let NERDTreeDirArrowCollapsible='▼'
+  let NERDTreeDirArrowExpandable='+'
+  let NERDTreeDirArrowCollapsible='-'
 endif
 let NERDTreeMapJumpNextSibling=""
 let NERDTreeMapJumpPrevSibling=""
@@ -60,7 +60,7 @@ let g:tagbar_left = 1
 let g:tagbar_hide_nonpublic = 0
 let g:tagbar_autoshowtag = 1
 let g:tagbar_show_visibility = 0
-let g:tagbar_iconchars = ['▶ ', '▼ ']
+let g:tagbar_iconchars = ['+', '-']
 let g:tagbar_compact = 1
 let g:tagbar_sort = 0
 
@@ -277,7 +277,7 @@ augroup end
 
 "cscope{{{
 if has("cscope")
-  set csprg=$VIMFILES.'/tools/cscope'
+  " set csprg=$VIMFILES.'/tools/cscope'
   set csto=0
   set cst
   set nocsverb
