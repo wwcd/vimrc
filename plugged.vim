@@ -21,7 +21,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plug 'python-mode/python-mode', { 'branch': 'master' }
+Plug 'python-mode/python-mode', { 'branch': 'develop' }
 Plug 'plasticboy/vim-markdown'
 Plug 'leafgarland/typescript-vim'
 Plug 'cespare/vim-toml'

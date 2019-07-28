@@ -9,6 +9,12 @@ vmap > >gv
 vmap < <gv
 map Y y$
 
+" reselecting previously selected text
+" gv
+
+" reselecting previously yanked text
+nnoremap gb `[v`]
+
 set nu
 set rnu
 set nocursorline
