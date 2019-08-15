@@ -9,22 +9,23 @@ vmap > >gv
 vmap < <gv
 map Y y$
 
-" reselecting previously selected text
-" gv
-
-" reselecting previously yanked text
-nnoremap gb `[v`]
-
+" line number
 set nu
 set rnu
 set nocursorline
 
 set completeopt=longest,menuone
 
+" select last seleted
+" gv
+" select last paste
+nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
+
 " Remember info about open buffers on close
 set viminfo^=%
 
-map <leader>e :edit %:p:h<cr>
+" browser current file dir
+map <silent><leader>e :NERDTreeFind<cr>
 
 if has("patch-7.4.1500")
   set foldmethod=marker
@@ -61,7 +62,6 @@ if has('nvim')
       let $TERM="linux"
     endif
 
-    map <leader>s :vs<cr>:term bash<cr>
     let g:python_host_prog='/usr/bin/python2'
     let g:python3_host_prog='/usr/bin/python3'
   endif

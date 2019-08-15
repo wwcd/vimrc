@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: 
-"       Amir Salihefendic ¡ª @amix3k
+"       Amir Salihefendic â€” @amix3k
 "
 " Awesome_version:
 "       Get this config, nice color schemes and lots of plugins!
@@ -313,7 +313,7 @@ fun! CleanExtraSpaces()
 endfun
 
 if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee,*.ts,*.md :call CleanExtraSpaces()
+    autocmd BufWritePre *.json,*.toml,*.txt,*.js,*.py,*.wiki,*.sh,*.coffee,*.ts,*.md :call CleanExtraSpaces()
 endif
 
 

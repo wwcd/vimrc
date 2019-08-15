@@ -21,7 +21,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plug 'python-mode/python-mode', { 'branch': 'develop' }
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'plasticboy/vim-markdown'
 Plug 'leafgarland/typescript-vim'
 Plug 'cespare/vim-toml'
@@ -34,12 +34,15 @@ call plug#end()
 "-------------------------------------------------------------------------------
 
 " NERD_tree {{{
+" disable netrw
 let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
 
 let NERDTreeWinSize=40
 let NERDTreeDirArrows=0
 let NERDTreeHighlightCursorline=0
+let g:NERDTreeStatusline=-1
+let NERDTreeQuitOnOpen=1
 if has('unix')
   let NERDTreeDirArrowExpandable='+'
   let NERDTreeDirArrowCollapsible='-'
@@ -77,17 +80,16 @@ let g:tagbar_type_typescript = {
   \ 'e:enums',
   \ ]
   \ }
-" }}}
 
-"lightline {{{
-set noshowmode
 let g:tagbar_status_func = 'TagbarStatusFunc'
-
 function! TagbarStatusFunc(current, sort, fname, ...) abort
   let g:lightline.fname = a:fname
   return lightline#statusline(0)
 endfunction
+" }}}
 
+"lightline {{{
+set noshowmode
 let g:lightline = {
   \ 'colorscheme': 'landscape',
   \ 'mode_map': { 'c': 'NORMAL' },
@@ -100,9 +102,7 @@ let g:lightline = {
   \             [ 'filetype', 'fileformat', 'fileencoding' ] ]
   \ },
   \ 'component_function': {
-  \   'filename': 'LightlineFilename',
-  \   'modified': 'LightLineModified',
-  \   'readonly': 'LightLineReadonly',
+  \   'filename': 'LightLineFilename',
   \   'fugitive': 'LightLineFugitive',
   \   'fileformat': 'LightLineFileformat',
   \   'filetype': 'LightLineFiletype',
@@ -116,21 +116,13 @@ function! LightLineModified()
 endfunction
 
 function! LightLineReadonly()
-  if has('nvim')
-    return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '' : ''
-  else
-    return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'RO' : ''
-  endif
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'RO' : ''
 endfunction
 
 function! LightLineFugitive()
-  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+  if &ft !~? 'vimfiler\|gundo\|fzf\|tagbar\|nerdtree' && exists("*fugitive#head")
     let branch = fugitive#head()
-    if has('nvim')
-      return branch !=# '' ? ' '.branch : ''
-    else
-      return branch !=# '' ? branch : ''
-    endif
+    return branch !=# '' ? branch : ''
   endif
   return ''
 endfunction
@@ -148,15 +140,21 @@ function! LightLineFileencoding()
 endfunction
 
 function! LightLineMode()
-  return winwidth(0) > 60 ? lightline#mode() : ''
+  let fname = expand('%:t')
+  return &ft == 'tagbar' ? 'TAG' :
+        \ &ft == 'nerdtree' ? 'NERD' :
+        \ &ft == 'fzf' ? 'FZF' :
+        \ winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
-function! LightlineFilename()
-  return ('' != expand('%') ? expand('%') : '[No Name]') .
+function! LightLineFilename()
+  return &ft == 'tagbar' ? '__Tagbar__' : 
+        \ &ft == 'nerdtree' ? '__NERD_tree__' :
+        \ &ft == 'fzf' ? '__FZF__' :
+        \ ('' != expand('%') ? expand('%') : '[No Name]') .
         \ ('' != LightLineReadonly() ? ' ' . LightLineReadonly() : '') .
         \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
-
 "}}}
 
 "fzf{{{
@@ -183,6 +181,8 @@ imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
+
+autocmd! User FzfStatusLine call lightline#update()
 "}}}
 
 "Ack{{{
@@ -221,17 +221,19 @@ let g:vim_markdown_folding_disabled = 1
 "}}}
 
 "python-mode{{{
+let g:pymode_python = 'python3'
 let g:pymode_folding = 1
 let g:pymode_rope = 1
 let g:pymode_rope_auto_project = 0
 let g:pymode_rope_goto_definition_bind = "<C-]>"
 let g:pymode_rope_goto_definition_cmd = 'e'
 let g:pymode_rope_regenerate_on_write = 0
+let g:pymode_rope_complete_on_dot = 0
 let g:pymode_options_max_line_length = 100
 let g:pymode_options_colorcolumn=0
 let g:pymode_lint = 1
 let g:pymode_lint_on_write = 1
-let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pylint']
+" let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pylint']
 let g:pymode_lint_options_mccabe = {'complexity': 8}
 " Using local .pylintrc
 let g:pymode_lint_options_pylint = {'rcfile': ''}
