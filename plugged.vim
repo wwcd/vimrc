@@ -93,7 +93,7 @@ endfunction
 "lightline {{{
 set noshowmode
 let g:lightline = {
-  \ 'colorscheme': 'landscape',
+  \ 'colorscheme': 'wwcd',
   \ 'mode_map': { 'c': 'NORMAL' },
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
@@ -112,6 +112,11 @@ let g:lightline = {
   \   'mode': 'LightLineMode',
   \ },
   \ }
+
+" wwcd colorscheme
+let s:p = g:lightline#colorscheme#landscape#palette
+let s:p.inactive.middle = s:p.normal.middle
+let g:lightline#colorscheme#wwcd#palette = lightline#colorscheme#fill(s:p)
 
 function! LightLineModified()
   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : ''
