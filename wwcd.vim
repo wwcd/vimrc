@@ -25,13 +25,12 @@ nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
 set viminfo^=%
 
 " browser current file dir
-map <silent><leader>e :NERDTreeFind<cr>
+map <silent><leader>e :edit %:p:h<CR>
 
 if has("patch-7.4.1500")
   set foldmethod=marker
 endif
 "set keywordprg=
-"
 
 if has('nvim')
   tnoremap <Esc> <C-\><C-n>

@@ -38,10 +38,11 @@ call plug#end()
 let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
 
+let NERDTreeMinimalUI=1
 let NERDTreeWinSize=40
 let NERDTreeDirArrows=0
 let NERDTreeHighlightCursorline=0
-let g:NERDTreeStatusline=-1
+let NERDTreeStatusline=-1
 let NERDTreeQuitOnOpen=1
 if has('unix')
   let NERDTreeDirArrowExpandable='+'
@@ -52,13 +53,14 @@ let NERDTreeMapJumpPrevSibling=""
 let NERDTreeIgnore=['\.o$[[file]]', '\.pyc$[[file]]']
 nmap <silent><F7> :NERDTreeToggle<CR>
 map <silent><C-n> :NERDTreeToggle<CR>
+" fix edit lightline missing
+autocmd FileType nerdtree call lightline#update()
 " }}}
 
 " Tagbar {{{
 nmap <silent><F8> :TagbarToggle<CR>
 " set 'stty -ixon' in ~/.bash_profile to disable XON/XOFF
 map <silent><C-s> :TagbarToggle<CR>
-let g:tagbar_ctags_bin = $VIMFILES.'/tools/ctags'
 let g:tagbar_left = 1
 let g:tagbar_hide_nonpublic = 0
 let g:tagbar_autoshowtag = 1
@@ -279,7 +281,6 @@ augroup end
 
 "cscope{{{
 if has("cscope")
-  " set csprg=$VIMFILES.'/tools/cscope'
   set csto=0
   set cst
   set nocsverb
