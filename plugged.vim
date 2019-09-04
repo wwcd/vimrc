@@ -39,6 +39,7 @@ let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
 
 let NERDTreeMinimalUI=1
+let NERDTreeShowLineNumbers=1
 let NERDTreeWinSize=40
 let NERDTreeDirArrows=0
 let NERDTreeHighlightCursorline=0
@@ -63,6 +64,7 @@ nmap <silent><F8> :TagbarToggle<CR>
 map <silent><C-s> :TagbarToggle<CR>
 let g:tagbar_left = 1
 let g:tagbar_hide_nonpublic = 0
+let g:tagbar_show_linenumbers = 1
 let g:tagbar_autoshowtag = 1
 let g:tagbar_show_visibility = 0
 let g:tagbar_iconchars = ['+', '-']
@@ -193,20 +195,6 @@ autocmd! User FzfStatusLine call lightline#update()
 "}}}
 
 "Ack{{{
-let g:ack_mappings = {
-  \ "t": "<C-W><CR><C-W>T",
-  \ "T": "<C-W><CR><C-W>TgT<C-W>j",
-  \ "o": "<CR>",
-  \ "O": "",
-  \ "go": "",
-  \ "h": "",
-  \ "H": "",
-  \ "v": "",
-  \ "gv": "",
-  \ "i": "<C-W><CR><C-W>K",
-  \ "gi": "<C-W><CR><C-W>K<C-W>b",
-  \ "s": "<C-W><CR><C-W>H<C-W>b<C-W>J<C-W>t",
-  \ "gs": "<C-W><CR><C-W>H<C-W>b<C-W>J" }
 
 if executable('rg')
   let g:ackprg = 'rg --vimgrep --no-heading --ignore-file ' . expand('$VIMFILES/tools/.ignore')

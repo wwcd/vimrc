@@ -1,19 +1,23 @@
-"" command moving
+" define bash style editing keys
 cnoremap <C-A> <Home>
 cnoremap <C-F> <Right>
 cnoremap <C-B> <Left>
 cnoremap <Esc>b <S-Left>
 cnoremap <Esc>f <S-Right>
 
+" maintain Visual Mode after shifting > and <
 vmap > >gv
 vmap < <gv
+
+" yank from the cursor to the end of line, it like 'C' change from the cursor
 map Y y$
 
-" line number
+" line number and cursorline
 set nu
 set rnu
 set nocursorline
 
+" complete options
 set completeopt=longest,menuone
 
 " select last seleted
@@ -21,8 +25,8 @@ set completeopt=longest,menuone
 " select last paste
 nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
 
-" Remember info about open buffers on close
-set viminfo^=%
+" remember info about open buffers on close
+set shada^=%
 
 " browser current file dir
 map <silent><leader>e :edit %:p:h<CR>
@@ -33,42 +37,21 @@ endif
 "set keywordprg=
 
 if has('nvim')
+  " terminal switch
   tnoremap <Esc> <C-\><C-n>
   tnoremap <A-h> <C-\><C-n><C-w>h
   tnoremap <A-j> <C-\><C-n><C-w>j
   tnoremap <A-k> <C-\><C-n><C-w>k
   tnoremap <A-l> <C-\><C-n><C-w>l
 
-  if has('win32')
-    map! <S-Insert> <C-R>+
-    colorscheme molokai
-
-    function! ToggleGuiWindowFullScreen()
-      if g:GuiWindowFullScreen == 0
-        call GuiWindowFullScreen(1)
-      else
-        call GuiWindowFullScreen(0)
-      endif
-    endfunction
-    command! -nargs=0 ToggleFullScreen call ToggleGuiWindowFullScreen()
-    nmap <F11> :ToggleFullScreen<CR>
-  end
-
-  if has('unix')
-    if $TMUX != "" 
-      let $TERM="screen-256color"
-    else
-      let $TERM="linux"
-    endif
-
-    let g:python_host_prog='/usr/bin/python2'
-    let g:python3_host_prog='/usr/bin/python3'
-  endif
-
+  " Misc
   set listchars=tab:»\ ,eol:$,trail:~,extends:>,precedes:<,space:·
-  set icm=split
+  set inccommand=split
 else
-  set t_Co=256
+  try
+    color molokai
+  catch
+  endtry
 endif
 
 if v:version >= 704
