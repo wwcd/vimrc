@@ -26,7 +26,7 @@ set completeopt=longest,menuone
 nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
 
 " remember info about open buffers on close
-set shada^=%
+set viminfo^=%
 
 " browser current file dir
 map <silent><leader>e :edit %:p:h<CR>
@@ -47,7 +47,9 @@ if has('nvim')
   " Misc
   set listchars=tab:»\ ,eol:$,trail:~,extends:>,precedes:<,space:·
   set inccommand=split
-else
+endif
+
+if has('win32')
   try
     color molokai
   catch
@@ -79,5 +81,6 @@ autocmd BufNewFile,BufRead *.html setlocal expandtab tabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.json setlocal expandtab tabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.toml setlocal expandtab tabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.proto setlocal expandtab tabstop=2 shiftwidth=2
+autocmd BufNewFile,BufRead *.tmpl setlocal expandtab tabstop=2 shiftwidth=2
 
 " vim: ts=2 sw=2 et
