@@ -36,6 +36,10 @@ if has("patch-7.4.1500")
 endif
 "set keywordprg=
 
+if !has('gui_running')
+  set t_Co=256
+endif
+
 if has('nvim')
   " terminal switch
   tnoremap <Esc> <C-\><C-n>
