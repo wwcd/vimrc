@@ -1,3 +1,6 @@
+" language
+lang en_US
+
 " define bash style editing keys
 cnoremap <C-A> <Home>
 cnoremap <C-F> <Right>
