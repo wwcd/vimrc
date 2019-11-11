@@ -1,10 +1,10 @@
-
 call plug#begin($VIMFILES.'/plugged')
 
 " colorscheme
 Plug 'fatih/molokai'
 Plug 'wwcd/desert'
 
+" common edit
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -15,16 +15,18 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'wellle/targets.vim'
 
+" snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-Plug 'plasticboy/vim-markdown'
-Plug 'leafgarland/typescript-vim'
+" coding
 Plug 'cespare/vim-toml'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'leafgarland/typescript-vim'
+Plug 'plasticboy/vim-markdown'
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 
 call plug#end()
 
@@ -157,7 +159,7 @@ function! LightLineMode()
 endfunction
 
 function! LightLineFilename()
-  return &ft == 'tagbar' ? '__Tagbar__' : 
+  return &ft == 'tagbar' ? '__Tagbar__' :
         \ &ft == 'nerdtree' ? '__NERD_tree__' :
         \ &ft == 'fzf' ? '__FZF__' :
         \ ('' != expand('%') ? expand('%') : '[No Name]') .

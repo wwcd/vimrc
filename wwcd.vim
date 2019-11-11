@@ -83,11 +83,4 @@ if v:version >= 704
   call Undo()
 endif
 
-autocmd BufNewFile,BufRead *.ts setlocal expandtab tabstop=2 shiftwidth=2
-autocmd BufNewFile,BufRead *.html setlocal expandtab tabstop=2 shiftwidth=2
-autocmd BufNewFile,BufRead *.json setlocal expandtab tabstop=2 shiftwidth=2
-autocmd BufNewFile,BufRead *.toml setlocal expandtab tabstop=2 shiftwidth=2
-autocmd BufNewFile,BufRead *.proto setlocal expandtab tabstop=2 shiftwidth=2
-autocmd BufNewFile,BufRead *.tmpl setlocal expandtab tabstop=2 shiftwidth=2
-
 " vim: ts=2 sw=2 et
