@@ -15,6 +15,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'wellle/targets.vim'
 
 " snippets
 Plug 'SirVer/ultisnips'
@@ -243,16 +244,13 @@ let g:go_list_type = "quickfix"
 
 let g:go_def_mode = 'gopls'
 let g:go_info_mode = 'gopls'
+let g:go_rename_command = 'gopls'
 " let g:go_lsp_log = []
 " let g:go_debug = ['lsp']
 
 let g:go_metalinter_command='golangci-lint'
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 " let g:go_metalinter_autosave = 1
-" let g:go_metalinter_autosave_enabled = ['vet', 'golint']
-" let g:go_metalinter_disabled = []
-let g:go_metalinter_command = '--enable vet --enable golint --enable errcheck --exclude comment --exclude check'
-let g:go_metalinter_deadline = '5s'
 
 augroup go
   autocmd!
