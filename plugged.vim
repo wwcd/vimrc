@@ -263,6 +263,7 @@ augroup go
   autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
   autocmd FileType go nmap <Leader>i <Plug>(go-info)
   autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
+  autocmd FileType go nmap <Leader>d <Plug>(go-diagnostics)
 
   " :GoAlternate  commands :A, :AV, :AS and :AT
   autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
