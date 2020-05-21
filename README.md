@@ -1,38 +1,16 @@
 
 # Install
 
-## vim
-
-```bash
-cd ~ && rm -rf .vim
-git clone --recursive https://github.com/shoulinwong/vimrc .vim
-ln -s ~/.vim/init.vim .vimrc
-```
-
-## gvim
-
-```batch
-git clone --recursive https://github.com/shoulinwong/vimrc vimfiles
-```
-
-## neovim in linux
-
-```bash
-cd ~ && rm -rf .vim
-git clone --recursive https://github.com/shoulinwong/vimrc .vim
-ln -s ~/.vim ~/.config/nvim
-```
-
-## neovim in windows
-
-```batch
-cd %USERPROFILE%\AppData\Local
-git clone --recursive https://github.com/shoulinwong/vimrc nvim
-```
+:PlugUpdate
 
 # Plugins
 
-## Base
+## Color scheme
+
+- [molokai](https://github.com/fatih/molokai)
+- [desert](https://github.com/wwcd/desert)
+
+## Edit
 
 - [ack.vim](https://github.com/mileszs/ack.vim.git)
 - [fzf.vim](https://github.com/junegunn/fzf.vim.git)
@@ -46,10 +24,6 @@ git clone --recursive https://github.com/shoulinwong/vimrc nvim
 - [vim-repeat](https://github.com/tpope/vim-repeat.git)
 - [vim-surround](https://github.com/tpope/vim-surround.git)
 
-## Color
-
-- [molokai](https://github.com/fatih/molokai)
-- [desert](https://github.com/wwcd/desert)
 
 ## Snips
 
@@ -58,11 +32,8 @@ git clone --recursive https://github.com/shoulinwong/vimrc nvim
 
 ## Coding
 
-- [python-mode](https://github.com/python-mode/python-mode)
-- [typescript-vim](https://github.com/leafgarland/typescript-vim.git)
 - [vim-go](https://github.com/fatih/vim-go.git)
-- [vim-markdown](https://github.com/plasticboy/vim-markdown.git)
-- [vim-toml](https://github.com/cespare/vim-toml.git)
+- [nvim-lsp](https://github.com/neovim/nvim-lsp) for neovim user, install lsp-server by :LspInstall
 
 # Key Mappings
 
@@ -71,9 +42,7 @@ The leader is `,`.
 ## Plugin related mapping
 
 - `<c-n>` :Open Nerdtree
-- `<c-s>` :Open Tagbar
+- `<c-t>` :Open Tagbar
 - `<c-b>` :Open FZF buffers
 - `<c-p>` :Open FZF files
 - `<leader>g` :Ack Search using ripgrep
-
-*Note: `<c-s>` need set 'stty -ixon' in ~/.bash_profile to disable XON/XOFF*

@@ -4,7 +4,7 @@ call plug#begin($VIMFILES.'/plugged')
 Plug 'fatih/molokai'
 Plug 'wwcd/desert'
 
-" common edit
+" common
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -18,18 +18,44 @@ Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
 
 " snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " coding
-Plug 'cespare/vim-toml'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plug 'leafgarland/typescript-vim'
-Plug 'plasticboy/vim-markdown'
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'cespare/vim-toml'
+
+" lsp
+if has('nvim')
+Plug 'neovim/nvim-lsp'
+endif
 
 call plug#end()
+
+
+" NVIM-LSP {{{
+if has('nvim')
+lua << EOF
+local nvim_lsp = require'nvim_lsp'
+nvim_lsp.bashls.setup{}
+nvim_lsp.pyls.setup{}
+nvim_lsp.tsserver.setup{}
+nvim_lsp.cssls.setup{}
+EOF
+
+autocmd Filetype typescript,javascript,python,css setlocal omnifunc=v:lua.vim.lsp.omnifunc
+
+nnoremap <silent> ;gc   <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> ;gd   <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> ;h    <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> ;i    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> ;s    <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> ;td   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> ;gr   <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> ;f    <cmd>lua vim.lsp.buf.formatting()<CR>
+
+endif
+"}}}
 
 
 "-------------------------------------------------------------------------------
@@ -63,8 +89,7 @@ autocmd FileType nerdtree call lightline#update()
 
 " Tagbar {{{
 nmap <silent><F8> :TagbarToggle<CR>
-" set 'stty -ixon' in ~/.bash_profile to disable XON/XOFF
-map <silent><C-s> :TagbarToggle<CR>
+map <silent><C-t> :TagbarToggle<CR>
 let g:tagbar_left = 1
 let g:tagbar_hide_nonpublic = 0
 let g:tagbar_show_linenumbers = 1
@@ -171,6 +196,7 @@ endfunction
 
 "fzf{{{
 let g:fzf_command_prefix = 'Fzf'
+let g:fzf_preview_window = ''
 
 if executable('rg')
   let $FZF_DEFAULT_COMMAND='rg --files --hidden --follow --ignore-file ' . expand('$VIMFILES/tools/.ignore')
@@ -214,39 +240,14 @@ autocmd FileType cmake setlocal commentstring=#\ %s
 " Coding plugins
 "-------------------------------------------------------------------------------
 
-"markdown {{{
-let g:vim_markdown_folding_disabled = 1
-"}}}
-
-"python-mode{{{
-let g:pymode_python = 'python3'
-let g:pymode_folding = 1
-let g:pymode_rope = 1
-let g:pymode_rope_auto_project = 0
-let g:pymode_rope_goto_definition_bind = "<C-]>"
-let g:pymode_rope_goto_definition_cmd = 'e'
-let g:pymode_rope_regenerate_on_write = 0
-let g:pymode_rope_complete_on_dot = 0
-let g:pymode_options_max_line_length = 100
-let g:pymode_options_colorcolumn=0
-let g:pymode_lint = 1
-let g:pymode_lint_on_write = 1
-" let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pylint']
-let g:pymode_lint_options_mccabe = {'complexity': 8}
-" Using local .pylintrc
-let g:pymode_lint_options_pylint = {'rcfile': ''}
-"}}}
-
 "vim-go{{{
-let g:go_fmt_command = "goimports"
-let g:go_autodetect_gopath = 1
 let g:go_list_type = "quickfix"
+let g:go_term_enabled = 1
 
-let g:go_def_mode = 'gopls'
-let g:go_info_mode = 'gopls'
+let g:go_fmt_command = "goimports"
 let g:go_rename_command = 'gopls'
-" let g:go_lsp_log = []
-" let g:go_debug = ['lsp']
+let g:go_implements_mode = 'gopls'
+let g:go_diagnostics_enabled = 1
 
 let g:go_metalinter_command='golangci-lint'
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
@@ -264,11 +265,14 @@ augroup go
   autocmd FileType go nmap <Leader>i <Plug>(go-info)
   autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
   autocmd FileType go nmap <Leader>d <Plug>(go-diagnostics)
+  autocmd FileType go nmap <Leader><Tab> <Plug>(go-iferr)
 
   " :GoAlternate  commands :A, :AV, :AS and :AT
   autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
   autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
   autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+
+  autocmd BufRead,BufNewFile *.tmpl set filetype=gohtmltmpl
 augroup end
 
 "}}}
