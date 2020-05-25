@@ -6,8 +6,7 @@ Plug 'wwcd/desert'
 
 " common
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/fzf', { 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree'
@@ -26,7 +25,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'cespare/vim-toml'
 
 " lsp
-if has('nvim')
+if has('nvim') && has('unix')
 Plug 'neovim/nvim-lsp'
 endif
 
@@ -34,7 +33,7 @@ call plug#end()
 
 
 " NVIM-LSP {{{
-if has('nvim')
+if has('nvim') && has('unix')
 lua << EOF
 local nvim_lsp = require'nvim_lsp'
 nvim_lsp.bashls.setup{}
@@ -53,7 +52,6 @@ nnoremap <silent> ;s    <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> ;td   <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> ;gr   <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> ;f    <cmd>lua vim.lsp.buf.formatting()<CR>
-
 endif
 "}}}
 
