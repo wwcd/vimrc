@@ -41,8 +41,8 @@ The leader is `,`.
 
 ## Plugin related mapping
 
-- `<c-n>` :Open Nerdtree
-- `<c-t>` :Open Tagbar
+- `<c-j><c-n>` :Open Nerdtree
+- `<c-j><c-t>` :Open Tagbar
 - `<c-b>` :Open FZF buffers
 - `<c-p>` :Open FZF files
 - `<leader>g` :Ack Search using ripgrep

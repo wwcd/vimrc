@@ -82,14 +82,14 @@ let NERDTreeMapJumpNextSibling=""
 let NERDTreeMapJumpPrevSibling=""
 let NERDTreeIgnore=['\.o$[[file]]', '\.pyc$[[file]]']
 nmap <silent><F7> :NERDTreeToggle<CR>
-map <silent><C-n> :NERDTreeToggle<CR>
+map <silent><c-j><c-n> :NERDTreeToggle<CR>
 " fix edit lightline missing
 autocmd FileType nerdtree call lightline#update()
 " }}}
 
 " Tagbar {{{
 nmap <silent><F8> :TagbarToggle<CR>
-map <silent><C-t> :TagbarToggle<CR>
+map <silent><c-j><c-t> :TagbarToggle<CR>
 let g:tagbar_left = 1
 let g:tagbar_hide_nonpublic = 0
 let g:tagbar_show_linenumbers = 1
@@ -261,11 +261,11 @@ augroup go
   autocmd FileType go nmap <leader>b <Plug>(go-build)
   autocmd FileType go nmap <leader>r <Plug>(go-run)
   autocmd FileType go nmap <leader>t <Plug>(go-test)
-  autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
-  autocmd FileType go nmap <Leader>i <Plug>(go-info)
-  autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
-  autocmd FileType go nmap <Leader>d <Plug>(go-diagnostics)
-  autocmd FileType go nmap <Leader><Tab> <Plug>(go-iferr)
+  autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
+  autocmd FileType go nmap <leader>i <Plug>(go-info)
+  autocmd FileType go nmap <leader>l <Plug>(go-metalinter)
+  autocmd FileType go nmap <leader>d <Plug>(go-diagnostics)
+  autocmd FileType go nmap <leader><Tab> <Plug>(go-iferr)
 
   " :GoAlternate  commands :A, :AV, :AS and :AT
   autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
