@@ -96,6 +96,7 @@ let g:tagbar_left = 1
 let g:tagbar_hide_nonpublic = 0
 let g:tagbar_show_linenumbers = 1
 let g:tagbar_autoshowtag = 1
+let g:tagbar_autofocus = 1
 let g:tagbar_show_visibility = 0
 let g:tagbar_iconchars = ['+', '-']
 let g:tagbar_compact = 1
