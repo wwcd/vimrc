@@ -63,6 +63,9 @@ endif
 "-------------------------------------------------------------------------------
 
 " NERD_tree {{{
+nmap <silent><F7> :NERDTreeToggle<CR>
+map <silent><c-n> :NERDTreeToggle<CR>
+
 " disable netrw
 let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
@@ -81,15 +84,14 @@ endif
 let NERDTreeMapJumpNextSibling=""
 let NERDTreeMapJumpPrevSibling=""
 let NERDTreeIgnore=['\.o$[[file]]', '\.pyc$[[file]]']
-nmap <silent><F7> :NERDTreeToggle<CR>
-map <silent><c-j><c-n> :NERDTreeToggle<CR>
 " fix edit lightline missing
 autocmd FileType nerdtree call lightline#update()
 " }}}
 
 " Tagbar {{{
 nmap <silent><F8> :TagbarToggle<CR>
-map <silent><c-j><c-t> :TagbarToggle<CR>
+map <silent><c-s> :TagbarToggle<CR>
+
 let g:tagbar_left = 1
 let g:tagbar_hide_nonpublic = 0
 let g:tagbar_show_linenumbers = 1

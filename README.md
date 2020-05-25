@@ -41,8 +41,10 @@ The leader is `,`.
 
 ## Plugin related mapping
 
-- `<c-j><c-n>` :Open Nerdtree
-- `<c-j><c-t>` :Open Tagbar
-- `<c-b>` :Open FZF buffers
-- `<c-p>` :Open FZF files
 - `<leader>g` :Ack Search using ripgrep
+- `<c-p>` :Open FZF files
+- `<c-b>` :Open FZF buffers
+- `<c-n>` :Open Nerdtree
+- `<c-s>` :Open Tagbar
+
+*Note: `<c-s>` need set 'stty -ixon' in ~/.bash_profile to disable XON/XOFF*
