@@ -40,6 +40,7 @@ nvim_lsp.bashls.setup{}
 nvim_lsp.pyls.setup{}
 nvim_lsp.tsserver.setup{}
 nvim_lsp.cssls.setup{}
+nvim_lsp.html.setup{}
 EOF
 
 autocmd Filetype typescript,javascript,python,css setlocal omnifunc=v:lua.vim.lsp.omnifunc
@@ -100,19 +101,22 @@ let g:tagbar_iconchars = ['+', '-']
 let g:tagbar_compact = 1
 let g:tagbar_sort = 0
 
+
 let g:tagbar_type_typescript = {
-  \ 'ctagstype': 'typescript',
-  \ 'kinds': [
-  \ 'c:classes',
-  \ 'n:modules',
-  \ 'f:functions',
-  \ 'v:variables',
-  \ 'v:varlambdas',
-  \ 'm:members',
-  \ 'i:interfaces',
-  \ 'e:enums',
-  \ ]
-  \ }
+    \ 'ctagstype' : 'typescript',
+    \ 'kinds'     : [
+      \ 'c:classes',
+      \ 'a:abstract classes',
+      \ 't:types',
+      \ 'n:modules',
+      \ 'f:functions',
+      \ 'v:variables',
+      \ 'l:varlambdas',
+      \ 'm:members',
+      \ 'i:interfaces',
+      \ 'e:enums'
+    \ ]
+    \ }
 
 let g:tagbar_status_func = 'TagbarStatusFunc'
 function! TagbarStatusFunc(current, sort, fname, ...) abort
@@ -158,8 +162,8 @@ function! LightLineReadonly()
 endfunction
 
 function! LightLineFugitive()
-  if &ft !~? 'vimfiler\|gundo\|fzf\|tagbar\|nerdtree' && exists("*fugitive#head")
-    let branch = fugitive#head()
+  if &ft !~? 'vimfiler\|gundo\|fzf\|tagbar\|nerdtree' && exists("*FugitiveHead")
+    let branch = FugitiveHead()
     return branch !=# '' ? branch : ''
   endif
   return ''
@@ -246,7 +250,6 @@ let g:go_list_type = "quickfix"
 let g:go_term_enabled = 1
 
 let g:go_fmt_command = "goimports"
-let g:go_rename_command = 'gopls'
 let g:go_implements_mode = 'gopls'
 let g:go_diagnostics_enabled = 1
 
