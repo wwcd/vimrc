@@ -37,13 +37,13 @@ if has('nvim') && has('unix')
 lua << EOF
 local nvim_lsp = require'nvim_lsp'
 nvim_lsp.bashls.setup{}
-nvim_lsp.pyls.setup{}
+nvim_lsp.pyls.setup{settings={pyls={plugins={pycodestyle={maxLineLength=140}}}}}
 nvim_lsp.tsserver.setup{}
 nvim_lsp.cssls.setup{}
 nvim_lsp.html.setup{}
 EOF
 
-autocmd Filetype typescript,javascript,python,css setlocal omnifunc=v:lua.vim.lsp.omnifunc
+autocmd Filetype typescript,javascript,python,css,html,sh setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 nnoremap <silent> ;gc   <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> ;gd   <cmd>lua vim.lsp.buf.definition()<CR>
