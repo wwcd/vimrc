@@ -29,7 +29,11 @@ set completeopt=longest,menuone
 nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
 
 " remember info about open buffers on close
-set viminfo^=%
+if has("nvim")
+  set viminfo^=%
+else
+  set shada^=%
+endif
 
 " browser current file dir
 map <silent><leader>e :edit %:p:h<CR>
@@ -64,23 +68,8 @@ if has('win32')
 endif
 
 if v:version >= 704
-  function! Undo()
-    if has('win32')
-      let l:tmpdir=expand('$USERPROFILE/.vimundo')
-    else
-      let l:tmpdir=expand('~/.vimundo')
-    endif
-
-    if !isdirectory(l:tmpdir)
-      call system('mkdir ' . l:tmpdir)
-    endif
-
-    let &undodir=l:tmpdir
-    set undofile
-    set undolevels=500 "maximum number of changes that can be undone
-  endfunction
-
-  call Undo()
+  set undofile
+  set undolevels=500 "maximum number of changes that can be undone
 endif
 
 " vim: ts=2 sw=2 et
