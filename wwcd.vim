@@ -30,9 +30,9 @@ nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
 
 " remember info about open buffers on close
 if has("nvim")
-  set viminfo^=%
-else
   set shada^=%
+else
+  set viminfo^=%
 endif
 
 " browser current file dir

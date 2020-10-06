@@ -202,12 +202,13 @@ endfunction
 "fzf{{{
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_preview_window = ''
+let g:fzf_layout = { 'down': '~40%' }
 
-if executable('rg')
-  let $FZF_DEFAULT_COMMAND='rg --files --hidden --follow --ignore-file ' . expand('$VIMFILES/tools/.ignore')
+if executable('fd')
+  let $FZF_DEFAULT_COMMAND='fd --type file --hidden --follow --ignore-file ' . expand('$VIMFILES/tools/.ignore')
   let $FZF_DEFAULT_OPTS='--color bg:-1,bg+:-1'
-elseif executable('ag')
-  let $FZF_DEFAULT_COMMAND='ag --hidden  --path-to-ignore ' . expand('$VIMFILES/tools/.ignore') . ' -g ""'
+elseif executable('rg')
+  let $FZF_DEFAULT_COMMAND='rg --files --hidden --follow --ignore-file ' . expand('$VIMFILES/tools/.ignore')
   let $FZF_DEFAULT_OPTS='--color bg:-1,bg+:-1'
 endif
 
@@ -251,6 +252,7 @@ let g:go_term_enabled = 1
 
 let g:go_fmt_command = "goimports"
 let g:go_implements_mode = 'gopls'
+let g:go_fillstruct_mode = 'gopls'
 let g:go_diagnostics_enabled = 1
 
 let g:go_metalinter_command='golangci-lint'
